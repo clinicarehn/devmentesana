@@ -8,34 +8,16 @@ $mysqli = connect_mysqli();
 //ajuntar la libreria excel
 include "../../PHPExcel/Classes/PHPExcel.php";
 
-$desde = $_GET['desde'];
-$hasta = $_GET['hasta'];
-$colaborador = $_GET['colaborador'];
 $usuario = $_SESSION['colaborador_id'];	
-
-$mes=nombremes(date("m", strtotime($desde)));
-$mes1=nombremes(date("m", strtotime($hasta)));
-$año=date("Y", strtotime($desde));
-$año2=date("Y", strtotime($hasta));
-
-if($colaborador == ""){
-	$where = "WHERE a.fecha BETWEEN '$desde' AND '$hasta'";	
-}else{
-	$where = "WHERE a.colaborador_id = '$colaborador' AND a.fecha BETWEEN '$desde' AND '$hasta'";	
-}
 
 //EJECUTAMOS LA CONSULTA DE BUSQUEDA
 
-$registro = "SELECT a.ausencia_id AS 'ausencia_id', DATE_FORMAT(a.fecha, '%d/%m/%Y') AS 'fecha', CONCAT(p.nombre,' ',p.apellido) AS 'paciente', p.identidad AS 'identidad', CONCAT(c.nombre,' ',c.apellido) AS 'colaborador', s.nombre AS 'servicio', a.pacientes_id AS 'pacientes_id'
-	FROM ausencias AS a
-	INNER JOIN pacientes AS p
-	ON a.pacientes_id = p.pacientes_id
-	INNER JOIN colaboradores AS c
-	ON a.colaborador_id = c.colaborador_id
-	INNER JOIN servicios AS s
-	ON a.servicio_id = s.servicio_id
-	".$where."
-    ORDER BY a.fecha ASC";
+$registro = "SELECT @i := @i + 1 AS 'contador', r.nombre AS 'referido', COUNT(p.referido_id) AS 'total'
+FROM pacientes AS p
+INNER JOIN referido AS r
+ON p.referido_id = r.referido_id
+cross join (select @i := 0) r
+GROUP BY p.referido_id";
 	
 $result = $mysqli->query($registro);
 
@@ -176,61 +158,45 @@ $objDrawing->setWorksheet($objPHPExcel->getActiveSheet()); //incluir la imagen
 $objPHPExcel->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(1, 5);
  
 $fila=1;
-$objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A1:F1");
+$objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A1:C1");
 $objPHPExcel->getActiveSheet()->SetCellValue("A$fila", $empresa_nombre);
-$objPHPExcel->getActiveSheet()->mergeCells("A$fila:F$fila"); //unir celdas
-$objPHPExcel->getActiveSheet()->setSharedStyle($titulo, "A$fila:F$fila");
+$objPHPExcel->getActiveSheet()->mergeCells("A$fila:C$fila"); //unir celdas
+$objPHPExcel->getActiveSheet()->setSharedStyle($titulo, "A$fila:C$fila");
 
 $fila=2;
-$objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A2:F2");
-$objPHPExcel->getActiveSheet()->SetCellValue("A$fila", "Reporte de Ausencias");
-$objPHPExcel->getActiveSheet()->mergeCells("A$fila:F$fila"); //unir celdas
-$objPHPExcel->getActiveSheet()->setSharedStyle($titulo, "A$fila:F$fila");
+$objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A2:C2");
+$objPHPExcel->getActiveSheet()->SetCellValue("A$fila", "Reporte de Referidos");
+$objPHPExcel->getActiveSheet()->mergeCells("A$fila:C$fila"); //unir celdas
+$objPHPExcel->getActiveSheet()->setSharedStyle($titulo, "A$fila:C$fila");
 
 $fila=3;
-$objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A3:F3");
-$objPHPExcel->getActiveSheet()->SetCellValue("A$fila", "Desde: $mes $año Hasta: $mes1 $año2");
-$objPHPExcel->getActiveSheet()->mergeCells("A$fila:F$fila"); //unir celdas
-$objPHPExcel->getActiveSheet()->setSharedStyle($titulo, "A$fila:F$fila");
+$objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A3:C3");
+$objPHPExcel->getActiveSheet()->SetCellValue("A$fila", "");
+$objPHPExcel->getActiveSheet()->mergeCells("A$fila:C$fila"); //unir celdas
+$objPHPExcel->getActiveSheet()->setSharedStyle($titulo, "A$fila:C$fila");
 
 $fila=5;
 $objPHPExcel->getActiveSheet()->SetCellValue("A$fila", 'N°');
-$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(5); 
-$objPHPExcel->getActiveSheet()->SetCellValue("B$fila", 'Fecha');
-$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(13);
-$objPHPExcel->getActiveSheet()->SetCellValue("C$fila", 'Nombre del Usuario');
-$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(45); 
-$objPHPExcel->getActiveSheet()->SetCellValue("D$fila", 'Identidad');
-$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
-$objPHPExcel->getActiveSheet()->SetCellValue("E$fila", 'Colaborador');
-$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(25);
-$objPHPExcel->getActiveSheet()->SetCellValue("F$fila", 'Servicio');
-$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(22);
+$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10); 
+$objPHPExcel->getActiveSheet()->SetCellValue("B$fila", 'Referido');
+$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(60);
+$objPHPExcel->getActiveSheet()->SetCellValue("C$fila", 'Total');
+$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(30); 
 
-$objPHPExcel->getActiveSheet()->setSharedStyle($subtitulo, "A$fila:F$fila"); //establecer estilo
-$objPHPExcel->getActiveSheet()->getStyle("A$fila:F$fila")->getFont()->setBold(true); //negrita
+$objPHPExcel->getActiveSheet()->setSharedStyle($subtitulo, "A$fila:C$fila"); //establecer estilo
+$objPHPExcel->getActiveSheet()->getStyle("A$fila:C$fila")->getFont()->setBold(true); //negrita
  
 //rellenar con contenido
 $valor = 1;
 if($result->num_rows>0){
 	while($registro2 = $result->fetch_assoc()){
 	   $fila+=1;
-	   $objPHPExcel->getActiveSheet()->SetCellValue("A$fila", $valor);
-       $objPHPExcel->getActiveSheet()->SetCellValue("B$fila", $registro2['fecha']);
-       $objPHPExcel->getActiveSheet()->SetCellValue("C$fila", $registro2['paciente']);
-	   
-	   if( strlen($registro2['identidad'])<10 ){
-		   $objPHPExcel->getActiveSheet()->setCellValueExplicit("D$fila", 'No porta identidad', PHPExcel_Cell_DataType::TYPE_STRING);		   
-	   }else{
-		   $objPHPExcel->getActiveSheet()->setCellValueExplicit("D$fila", $registro2['identidad'], PHPExcel_Cell_DataType::TYPE_STRING);
-	   }
-	          
-	   $objPHPExcel->getActiveSheet()->SetCellValue("E$fila", $registro2['colaborador']);	   
-	   $objPHPExcel->getActiveSheet()->SetCellValue("F$fila", $registro2['servicio']);
-	   
-       //Establecer estilo
-       $objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A$fila:F$fila");	
-	   $valor++;
+	   $objPHPExcel->getActiveSheet()->SetCellValue("A$fila", $registro2['contador']);
+     $objPHPExcel->getActiveSheet()->SetCellValue("B$fila", $registro2['referido']);
+     $objPHPExcel->getActiveSheet()->SetCellValue("C$fila", $registro2['total']);
+	  
+     //Establecer estilo
+     $objPHPExcel->getActiveSheet()->setSharedStyle($bordes, "A$fila:C$fila");	
    }	
 }
  
@@ -249,7 +215,7 @@ $objPHPExcel->removeSheetByIndex(
 header("Content-Type: application/vnd.ms-excel");
  
 // nombre del archivo
-header('Content-Disposition: attachment; filename="Reporte de Atenciones '.$mes.'_'.$año.'.xls"');
+header('Content-Disposition: attachment; filename="Reporte de Referidos.xls"');
 //**********************************************************************
  
 //****************Guardar como excel 2007*******************************

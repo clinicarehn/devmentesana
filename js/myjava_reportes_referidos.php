@@ -19,12 +19,6 @@ function getServicio(){
 
 function pagination(partida){
 	var url = '<?php echo SERVERURL; ?>php/reporte_refereridos/paginar.php';	
-	
-	if($('#form_main #colaborador').val() == "" || $('#form_main #colaborador').val() == null){
-		colaborador = "";
-	}else{
-		colaborador = $('#form_main #colaborador').val();
-	}
 
 	$.ajax({
 		type:'POST',

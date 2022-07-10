@@ -69,7 +69,7 @@ $mysqli->close();//CERRAR CONEXIÓN
 	<div id="main_reportes_referido">
 		<form class="form-inline" id="form_main">	  
 		<div class="form-group">
-			<button class="btn btn-success ml-1" type="submit" id="limpiar"><div class="sb-nav-link-icon" data-toggle="tooltip" data-placement="top" title="Exportar"></div><i class="fas fa-download fa-lg"></i> Exportar</button>
+			<button class="btn btn-success ml-1" type="submit" id="reporte_excel"><div class="sb-nav-link-icon" data-toggle="tooltip" data-placement="top" title="Exportar"></div><i class="fas fa-download fa-lg"></i> Exportar</button>
 		</div>	   
 		</form>	
 		<hr/>   
