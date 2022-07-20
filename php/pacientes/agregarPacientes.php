@@ -13,7 +13,7 @@ $telefono1 = $_POST['telefono1'];
 $telefono2 = $_POST['telefono2'];
 $fecha_nacimiento = $_POST['fecha_nac'];
 $correo = strtolower(cleanString($_POST['correo']));
-$fecha = $_POST['fecha'];
+$fecha = date("Y-m-d");
 
 if(isset($_POST['departamento_id'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
 	if($_POST['departamento_id'] == ""){
@@ -70,7 +70,7 @@ if(isset($_POST['referido_id'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
 $localidad = cleanStringStrtolower($_POST['direccion']);
 $religion_id = 0;
 $profesion_id = 0;
-$identidad = 0;
+$identidad = $_POST['identidad'];
 $estado_civil = 0;
 $usuario = $_SESSION['colaborador_id'];
 $estado = 1; //1. Activo 2. Inactivo

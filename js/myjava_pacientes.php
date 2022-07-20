@@ -17,6 +17,7 @@ $(document).ready(function(){
 			$('#formulario_pacientes')[0].reset();	
 			$('#formulario_pacientes #pro').val('Registro');
 			$("#formulario_pacientes #fecha").attr('readonly', false);
+			$("#formulario_pacientes #identidad").attr('readonly', false);
 			$("#formulario_pacientes #pais_id").val(1);
 			$('#formulario_pacientes #validate').removeClass('bien_email');
 			$('#formulario_pacientes #validate').removeClass('error_email');
@@ -360,6 +361,8 @@ function editarRegistro(pacientes_id){
 					$('#formulario_pacientes #responsable').val(datos[13]);
 					$('#formulario_pacientes #responsable_id').val(datos[14]);
 					$('#formulario_pacientes #referido_id').val(datos[15]);
+					$('#formulario_pacientes #identidad').val(datos[16]);
+					$("#formulario_pacientes #identidad").attr('readonly', true);
 					$("#formulario_pacientes #fecha").attr('readonly', true);
 					$("#formulario_pacientes #expediente").attr('readonly', true);
 					$('#formulario_pacientes #validate').removeClass('bien_email');

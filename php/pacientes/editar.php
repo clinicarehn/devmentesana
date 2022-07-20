@@ -33,6 +33,7 @@ $pais_id = "";
 $responsable = "";
 $responsable_id = "";
 $referido_id = "";
+$identidad = "";
 	
 if($result->num_rows>0){
 	$consulta_expediente1 = $result->fetch_assoc();
@@ -51,7 +52,8 @@ if($result->num_rows>0){
 	$pais_id = $consulta_expediente1['pais_id'];	
 	$responsable = $consulta_expediente1['responsable'];	
 	$responsable_id = $consulta_expediente1['responsable_id'];	
-	$referido_id = $consulta_expediente1['referido_id'];	
+	$referido_id = $consulta_expediente1['referido_id'];
+	$identidad = $consulta_expediente1['identidad'];	
 }
 
 //OBTENER LA EDAD DEL USUARIO 
@@ -96,6 +98,7 @@ $datos = array(
 	13 => $responsable,	
 	14 => $responsable_id,		
 	15 => $referido_id,	
+	16 => $identidad,		
 );
 echo json_encode($datos);
 ?>

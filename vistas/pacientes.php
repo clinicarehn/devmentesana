@@ -90,10 +90,14 @@ $mysqli->close();//CERRAR CONEXIÓN
 					  <label for="apellido">Apellido <span class="priority">*<span/></label>
 					  <input type="text" required id="lastname" name="lastname" placeholder="Apellido" class="form-control"/>
 					</div>
-					<div class="col-md-4 mb-3">
+					<div class="col-md-4 mb-3" style="display: none;">
 					  <label for="fecha">Fecha <span class="priority">*<span/></label>
 					  <input type="date" required id="fecha" name="fecha" value="<?php echo date ("Y-m-d");?>" class="form-control"/>
-					</div>					
+					</div>	
+					<div class="col-md-4 mb-3">
+					  <label for="identidad">Identidad  o RTN <span class="priority">*<span/></label>
+					  <input type="number" required id="identidad" name="identidad" value="0" class="form-control" required data-toggle="tooltip" data-placement="top" title="Si deja la identidad en Cero, el sistema generará un numero de identidad correlativo">
+					</div>										
 				</div>	
 				<div class="form-row">
 					<div class="col-md-3 mb-3">
