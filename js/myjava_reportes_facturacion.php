@@ -21,7 +21,7 @@ $(document).ready(function() {
 	//INICIO ABRIR VENTANA MODAL PARA EL REGISTRO DE LAS FACTURAS
 	$('#form_main_facturacion_reportes #factura').on('click',function(e){
 		e.preventDefault();
-		if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 4 || getUsuarioSistema() == 5){
+		if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 			if($('#form_main_facturacion_reportes #profesional').val() == "" || $('#form_main_facturacion_reportes #profesional').val() == null){
 				profesional = getColaboradorConsultaID();
 			}else{
@@ -100,7 +100,7 @@ $(document).ready(function() {
 /****************************************************************************************************************************************************************/
 
 $('#form_eliminar #Si').on('click', function(e){ // add event submit We don't want this to act as a link so cancel the link action
-if (getUsuarioSistema() == 1 || getUsuarioSistema() == 5){
+if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 	e.preventDefault();
 	if($('#form_eliminar #motivo').val() != ""){
 		rollback(); 
@@ -343,7 +343,7 @@ function invoicesDetails(facturas_id){
 
 //INICIO ROLLBACK
 function modal_rollback(facturas_id, pacientes_id){	
-	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 4){
+	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 3 || getUsuarioSistema() == 4 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 		swal({
 		  title: "¿Esta seguro?",
 		  text: "¿Desea cancelar la factura para este registro: Paciente: " + consultarNombre(pacientes_id) + ". Factura N°:  " + getNumeroFactura(facturas_id) + "?",
