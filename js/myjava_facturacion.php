@@ -869,7 +869,7 @@ function getTotalFacturasDisponibles(){
 				$("#mensajeFacturas").html(mensaje).removeClass("alert alert-warning");				
 			}
 
-			if(valores[0] == 0){
+			if(valores[0] == 0 || valores[0] < 0){
 				mensaje = "No puede seguir facturando";
 
 				$("#formulario_facturacion #validar").attr("disabled", true);
