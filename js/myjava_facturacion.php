@@ -842,15 +842,13 @@ function getTotalFacturasDisponibles(){
 			var mensaje = "";
 			if(valores[0] >=10 && valores[0] <= 30){
 				mensaje = "Total Facturas disponibles: " + valores[0];
-
 				$("#mensajeFacturas").html(mensaje).addClass("alert alert-warning");
 				$("#mensajeFacturas").html(mensaje).removeClass("alert alert-danger");
-
 				$("#mensajeFacturas").attr("disabled", true);
 				$("#formulario_facturacion #validar").attr("disabled", false);
 				$("#formulario_facturacion #guardar").attr("disabled", false);
 				$("#formulario_facturacion #guardar1").attr("disabled", false);
-			}else if(valores[0] >=1 && valores[0] <= 9){
+			}else if(valores[0] >=0 && valores[0] <= 9){
 				mensaje = "Total Facturas disponibles: " + valores[0];
 				$("#mensajeFacturas").html(mensaje).addClass("alert alert-danger");
 				$("#mensajeFacturas").html(mensaje).removeClass("alert alert-warning");
@@ -861,7 +859,6 @@ function getTotalFacturasDisponibles(){
 			}
 			else{
 				mensaje = "";
-
 				$("#formulario_facturacion #validar").attr("disabled", false);
 				$("#formulario_facturacion #guardar").attr("disabled", false);
 				$("#formulario_facturacion #guardar1").attr("disabled", false);			
@@ -869,9 +866,19 @@ function getTotalFacturasDisponibles(){
 				$("#mensajeFacturas").html(mensaje).removeClass("alert alert-warning");				
 			}
 
-			if(valores[0] == 0 || valores[0] < 0){
-				mensaje = "No puede seguir facturando";
+			if(valores[0] ==0){
+				mensaje = "Total Facturas disponibles: " + valores[0];
+				mensaje += "<br/>Solo esta factura puede realizar";
+				$("#mensajeFacturas").html(mensaje).addClass("alert alert-danger");
+				$("#mensajeFacturas").html(mensaje).removeClass("alert alert-warning");
+				$("#mensajeFacturas").attr("disabled", true);
+				$("#formulario_facturacion #validar").attr("disabled", false);
+				$("#formulario_facturacion #guardar").attr("disabled", false);
+				$("#formulario_facturacion #guardar1").attr("disabled", false);
+			}
 
+			if(valores[0] < 0){
+				mensaje = "No puede seguir facturando";
 				$("#formulario_facturacion #validar").attr("disabled", true);
 				$("#formulario_facturacion #guardar").attr("disabled", true);
 				$("#formulario_facturacion #guardar1").attr("disabled", true);			
@@ -889,10 +896,16 @@ function getTotalFacturasDisponibles(){
 			}
 
 			if(valores[1] == 0){
+				mensaje += "<br/>Su fecha limite de facturación es hoy";				
+				$("#mensajeFacturas").html(mensaje).addClass("alert alert-danger");	
+				$("#mensajeFacturas").html(mensaje).removeClass("alert alert-warning");		
+			}
+			
+			if(valores[1] < 0){
 				mensaje += "<br/>Ya alcanzo su fecha límite";
 				$("#formulario_facturacion #validar").attr("disabled", true);
 				$("#formulario_facturacion #guardar").attr("disabled", true);
-				$("#formulario_facturacion #guardar1").attr("disabled", true);					
+				$("#formulario_facturacion #guardar1").attr("disabled", true);			
 				$("#mensajeFacturas").html(mensaje).addClass("alert alert-danger");	
 				$("#mensajeFacturas").html(mensaje).removeClass("alert alert-warning");		
 			}			
