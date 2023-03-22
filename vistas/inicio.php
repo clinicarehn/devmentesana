@@ -9,10 +9,6 @@ if( isset($_SESSION['colaborador_id']) == false ){
    header('Location: login.php'); 
 }    
 
-if($_SESSION['type'] !=1 || $_SESSION['type'] !=2 ){
-	header('Location: '.SERVERURL.'vistas/pacientes.php');
-}
-
 $_SESSION['menu'] = "Dashboard";
 
 if(isset($_SESSION['colaborador_id'])){
