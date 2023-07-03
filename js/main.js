@@ -449,15 +449,7 @@ function llenarTabla(dato){
 	
 	if(dato == "Medidas"){
 		listar_medidas();
-	}	
-	
-	if(dato == "Movimientos"){
-		listar_movimientos();
-		listar_productos_buscar();
-		getCategoriaProductosMovimientos();
-		getCategoriaProductos();
-		getCategoriaOperacion();
-	}			
+	}		
 	
 	if(dato == "AtencionMedica"){
 		pagination(1);
@@ -471,7 +463,17 @@ function llenarTabla(dato){
 
 	if(dato == "configuracionVariosemails"){
 		pagination(1);
-	}		
+	}	
+
+	if(dato == "Movimientos"){
+		listar_movimientos();
+		agregarMovimientos();
+		getCategoriaProductosMovimientos();
+		getCategoriaProductos();
+		getCategoriaOperacion();
+		getProductos(1);
+
+	}	
 }
 
 $(function () {

@@ -1,6 +1,7 @@
 <script src="<?php echo SERVERURL; ?>js/query/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>bootstrap/js/popper.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="<?php echo SERVERURL; ?>bootstrap/js/bootstrap-select.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>js/main.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>bootstrap/js/jquery.mCustomScrollbar.concat.min.js"></script>	
 <script src="<?php echo SERVERURL; ?>sweetalert/sweetalert.min.js" crossorigin="anonymous"></script>
@@ -14,7 +15,7 @@
 <script src="<?php echo SERVERURL; ?>bootstrap/js/buttons.html5.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>bootstrap/js/buttons.print.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>js/query/jquery.inputmask.bundle.js"></script>
-<script defer src="<?php echo SERVERURL; ?>js/query/snow.js"></script>	
+<script defer src="<?php echo SERVERURL; ?>js/query/snow.js"></script>
 	
 <!--Boton volver al principio-->
 <script src="<?php echo SERVERURL; ?>js/query/arriba.js"></script> 
