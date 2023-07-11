@@ -6,15 +6,15 @@ include "../funtions.php";
 $mysqli = connect_mysqli();
 
 $empresa_id = $_POST['empresa_id'];
-$empresa = cleanStringStrtolower($_POST['empresa']);
+$empresa = cleanString($_POST['empresa']);
 $rtn = $_POST['rtn'];
 $telefono = $_POST['telefono'];
 $celular = $_POST['celular'];
 $correo = $_POST['correo'];
-$direccion = cleanStringStrtolower($_POST['direccion']);
+$direccion = cleanString($_POST['direccion']);
 $horario_atencion = cleanString($_POST['horario_atencion']);
-$otra_info = cleanStringStrtolower($_POST['otra_info']);
-$eslogan = cleanStringStrtolower($_POST['eslogan']);
+$otra_info = cleanString($_POST['otra_info']);
+$eslogan = cleanString($_POST['eslogan']);
 $facebook = cleanString($_POST['facebook_empresa']);
 $sitio_web = cleanString($_POST['sitioweb_empresa']);
 

@@ -22,7 +22,7 @@ $(document).ready(function() {
 	$('#form_main #nuevo_registro').on('click',function(e){
 		e.preventDefault();
 		funciones();
-		if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2){	
+		if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 4){	
 		    $('#formularioSecuenciaFacturacion')[0].reset();
             limpiarSeciencia();	
             //HABILITAR CONTROLES PARA SOLO LECTURA
@@ -282,7 +282,7 @@ function eliminarRegistro(){
 //FIN FUNCION QUE GUARDA LOS REGISTROS DE PACIENTES QUE NO ESTAN ALMACENADOS EN LA AGENDA
 
 function editarRegistro(secuencia_facturacion_id){
-	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2){	
+	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 4){	
 		$('#formularioSecuenciaFacturacion')[0].reset();		
 		var url = '<?php echo SERVERURL; ?>php/secuencia_facturacion/editar.php';
 
@@ -297,7 +297,8 @@ function editarRegistro(secuencia_facturacion_id){
 				$('#delete').hide(); 			 
 				$('#formularioSecuenciaFacturacion #pro').val('Edición');
                 $('#formularioSecuenciaFacturacion #secuencia_facturacion_id').val(secuencia_facturacion_id);
-				$('#formularioSecuenciaFacturacion #empresa').val(array[0]);	
+				$('#formularioSecuenciaFacturacion #empresa').val(array[0]);
+				$('#formularioSecuenciaFacturacion #empresa').selectpicker('refresh');				
                 $('#formularioSecuenciaFacturacion #cai').val(array[1]);
                 $('#formularioSecuenciaFacturacion #prefijo').val(array[2]);
 				$('#formularioSecuenciaFacturacion #relleno').val(array[3]);	
@@ -307,6 +308,7 @@ function editarRegistro(secuencia_facturacion_id){
                 $('#formularioSecuenciaFacturacion #rango_final').val(array[7]);
 				$('#formularioSecuenciaFacturacion #fecha_limite').val(array[8]);	
                 $('#formularioSecuenciaFacturacion #estado').val(array[9]);
+				$('#formularioSecuenciaFacturacion #estado').selectpicker('refresh');
                 $('#formularioSecuenciaFacturacion #comentario').val(array[10]);		
 				$("#edi").attr('disabled', false);	
 
@@ -347,7 +349,7 @@ function editarRegistro(secuencia_facturacion_id){
 }
 
 function modal_eliminar(secuencia_facturacion_id){
-	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2){	
+	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 4){	
 		$('#formularioSecuenciaFacturacion')[0].reset();		
 		var url = '<?php echo SERVERURL; ?>php/secuencia_facturacion/editar.php';
 
@@ -361,7 +363,8 @@ function modal_eliminar(secuencia_facturacion_id){
 				$('#formularioSecuenciaFacturacion #pro').val('Eliminar Registro');
 				$("#formularioSecuenciaFacturacion #comentario").val("");
                 $('#formularioSecuenciaFacturacion #secuencia_facturacion_id').val(secuencia_facturacion_id);
-				$('#formularioSecuenciaFacturacion #empresa').val(array[0]);	
+				$('#formularioSecuenciaFacturacion #empresa').val(array[0]);
+				$('#formularioSecuenciaFacturacion #empresa').selectpicker('refresh');								
                 $('#formularioSecuenciaFacturacion #cai').val(array[1]);
                 $('#formularioSecuenciaFacturacion #prefijo').val(array[2]);
 				$('#formularioSecuenciaFacturacion #relleno').val(array[3]);	
@@ -371,6 +374,7 @@ function modal_eliminar(secuencia_facturacion_id){
                 $('#formularioSecuenciaFacturacion #rango_final').val(array[7]);
 				$('#formularioSecuenciaFacturacion #fecha_limite').val(array[8]);	
                 $('#formularioSecuenciaFacturacion #estado').val(array[9]);	
+				$('#formularioSecuenciaFacturacion #estado').selectpicker('refresh');
                 $('#formularioSecuenciaFacturacion #comentario').val(array[10]);					
 				$("#edi").attr('disabled', false);	
 
@@ -472,9 +476,11 @@ function getEmpresa(){
         success: function(data){
 		    $('#form_main #empresa').html("");
 			$('#form_main #empresa').html(data);
+			$('#form_main #empresa').selectpicker('refresh');
 
 		    $('#formularioSecuenciaFacturacion #empresa').html("");
-			$('#formularioSecuenciaFacturacion #empresa').html(data);			
+			$('#formularioSecuenciaFacturacion #empresa').html(data);	
+			$('#formularioSecuenciaFacturacion #empresa').selectpicker('refresh');			
         }
      });		
 }
@@ -491,9 +497,11 @@ function getEstado(){
         success: function(data){
 		    $('#form_main #estado').html("");
 			$('#form_main #estado').html(data);	
+			$('#form_main #estado').selectpicker('refresh');	
 
 		    $('#formularioSecuenciaFacturacion #estado').html("");
-			$('#formularioSecuenciaFacturacion #estado').html(data);				
+			$('#formularioSecuenciaFacturacion #estado').html(data);	
+			$('#formularioSecuenciaFacturacion #estado').selectpicker('refresh');				
         }
      });		
 }
