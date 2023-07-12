@@ -35,10 +35,14 @@ if($estado == 2 || $estado == 4){
 
 	if($clientes != ""){
 		$busqueda_paciente = "AND f.pacientes_id = '$clientes' AND f.usuario = '$colaborador_id'";
+	}else{
+		  $busqueda_paciente = "AND f.estado = '$estado'";
 	}
 
 	if($dato == !""){
 		$consulta_datos = "AND f.usuario = '$colaborador_id' AND (CONCAT(p.nombre,' ',p.apellido) LIKE '%$dato%' OR p.apellido LIKE '$dato%' OR p.identidad LIKE '$dato%' OR f.number LIKE '$dato%' OR m.number LIKE '$dato%')";
+	}else{
+		$consulta_datos = "AND f.estado = '$estado'";
 	}
 }else{
   /*if($profesional == "" && $dato == ""){
@@ -55,10 +59,14 @@ if($estado == 2 || $estado == 4){
 
 	if($clientes != ""){
 		$busqueda_paciente = "AND f.pacientes_id = '$clientes'";
+	}else{
+		  $busqueda_paciente = "AND f.estado = '$estado'";
 	}
 
 	if($dato == !""){
 		$consulta_datos = "AND (CONCAT(p.nombre,' ',p.apellido) LIKE '%$dato%' OR p.apellido LIKE '$dato%' OR p.identidad LIKE '$dato%' OR f.number LIKE '$dato%')";
+	}else{
+		$consulta_datos = "AND f.estado = '$estado'";
 	}
 }
 
