@@ -12,6 +12,7 @@ $fechai = $_POST['fechai'];
 $fechaf = $_POST['fechaf'];
 $dato = $_POST['dato'];
 $clientes = $_POST['clientes'];
+$profesional = $_POST['profesional'];
 $estado = $_POST['estado'];
 $usuario = $_SESSION['colaborador_id'];
 $usuario = $_SESSION['colaborador_id'];
@@ -19,6 +20,7 @@ $type = $_SESSION['type'];
 
 $busqueda_paciente = "";
 $consulta_datos = "";
+$profesional_consulta = "";
 
 if($estado == 2 || $estado == 4){
 	/*if($profesional == "" && $dato == ""){
@@ -32,17 +34,16 @@ if($estado == 2 || $estado == 4){
 	}else{
 		$where = "WHERE f.fecha BETWEEN '$fechai' AND '$fechaf' AND f.estado = '$estado' AND f.usuario = '$colaborador_id'";
 	}*/
-
 	if($clientes != ""){
 		$busqueda_paciente = "AND f.pacientes_id = '$clientes' AND f.usuario = '$colaborador_id'";
-	}else{
-		  $busqueda_paciente = "AND f.estado = '$estado'";
+	}
+
+	if($profesional != ""){
+	  $profesional_consulta = "AND f.colaborador_id = '$profesional'";
 	}
 
 	if($dato == !""){
 		$consulta_datos = "AND f.usuario = '$colaborador_id' AND (CONCAT(p.nombre,' ',p.apellido) LIKE '%$dato%' OR p.apellido LIKE '$dato%' OR p.identidad LIKE '$dato%' OR f.number LIKE '$dato%' OR m.number LIKE '$dato%')";
-	}else{
-		$consulta_datos = "AND f.estado = '$estado'";
 	}
 }else{
   /*if($profesional == "" && $dato == ""){
@@ -59,14 +60,14 @@ if($estado == 2 || $estado == 4){
 
 	if($clientes != ""){
 		$busqueda_paciente = "AND f.pacientes_id = '$clientes'";
-	}else{
-		  $busqueda_paciente = "AND f.estado = '$estado'";
+	}
+
+	if($profesional != ""){
+	  $profesional_consulta = "AND f.colaborador_id = '$profesional'";
 	}
 
 	if($dato == !""){
 		$consulta_datos = "AND (CONCAT(p.nombre,' ',p.apellido) LIKE '%$dato%' OR p.apellido LIKE '$dato%' OR p.identidad LIKE '$dato%' OR f.number LIKE '$dato%')";
-	}else{
-		$consulta_datos = "AND f.estado = '$estado'";
 	}
 }
 
@@ -80,9 +81,12 @@ $query = "SELECT f.facturas_id AS facturas_id, DATE_FORMAT(f.fecha, '%d/%m/%Y') 
 	ON f.servicio_id = s.servicio_id
 	INNER JOIN colaboradores AS c
 	ON f.colaborador_id = c.colaborador_id
+	WHERE f.estado = '$estado'
 	$busqueda_paciente
 	$consulta_datos
+	$profesional_consulta
 	ORDER BY f.pacientes_id ASC";
+
 $result = $mysqli->query($query) or die($mysqli->error);
 
 $nroLotes = 10;
@@ -123,8 +127,10 @@ $registro = "SELECT f.facturas_id AS facturas_id, DATE_FORMAT(f.fecha, '%d/%m/%Y
 	ON f.servicio_id = s.servicio_id
 	INNER JOIN colaboradores AS c
 	ON f.colaborador_id = c.colaborador_id
+	WHERE f.estado = '$estado'
 	$busqueda_paciente
 	$consulta_datos
+	$profesional_consulta
 	ORDER BY f.pacientes_id ASC
 	LIMIT $limit, $nroLotes";
 $result = $mysqli->query($registro) or die($mysqli->error);

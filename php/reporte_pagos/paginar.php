@@ -12,6 +12,7 @@ $fechai = $_POST['fechai'];
 $fechaf = $_POST['fechaf'];
 $dato = $_POST['dato'];
 $clientes = $_POST['clientes'];
+$profesional = $_POST['profesional'];
 $estado = $_POST['estado'];
 $usuario = $_SESSION['colaborador_id'];
 
@@ -34,9 +35,14 @@ $usuario = $_SESSION['colaborador_id'];
 }*/
 $busqueda_paciente = "";
 $consulta_datos = "";
+$profesional_consulta = "";
 
 if($clientes != ""){
-	$busqueda_paciente = "AND p.pacientes_id = '$clientes'";
+	$busqueda_paciente = "AND f.pacientes_id = '$clientes'";
+}
+
+if($profesional != ""){
+	$profesional_consulta = "AND f.colaborador_id = '$profesional'";
 }
 
 if($dato == !""){
@@ -55,8 +61,10 @@ $query = "SELECT p.facturas_id AS 'facturas_id', p.pagos_id AS 'pagos_id', p.fec
 	ON p.pagos_id = pd.pagos_id
 	INNER JOIN tipo_pago AS tp
 	ON pd.tipo_pago_id = tp.tipo_pago_id
+	WHERE p.estado = '$estado'
 	$busqueda_paciente
 	$consulta_datos
+	$profesional_consulta
 	ORDER BY p.fecha DESC";
 
 $result = $mysqli->query($query) or die($mysqli->error);
@@ -101,8 +109,10 @@ $registro = "SELECT p.facturas_id AS 'facturas_id', p.pagos_id AS 'pagos_id', p.
 	ON p.pagos_id = pd.pagos_id
 	INNER JOIN tipo_pago AS tp
 	ON pd.tipo_pago_id = tp.tipo_pago_id
+	WHERE p.estado = '$estado'
 	$busqueda_paciente
 	$consulta_datos
+	$profesional_consulta
 	LIMIT $limit, $nroLotes";
 $result = $mysqli->query($registro) or die($mysqli->error);
 
