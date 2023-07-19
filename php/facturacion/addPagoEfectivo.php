@@ -29,13 +29,13 @@ $tarjeta = 0;
 $query_tipo_factura = "SELECT tipo_factura
 FROM facturas
 WHERE facturas_id = '$facturas_id'";
-$result = $mysqli->query($query_tipo_factura) or die($mysqli->error);
+$resultTipoFactura = $mysqli->query($query_tipo_factura) or die($mysqli->error);
 $consulta2TipoFactura = $resultTipoFactura->fetch_assoc();
 
 $tipo_factura = "";
 
 if($resultTipoFactura->num_rows>0){	
-	$tipo_factura = $consulta2['tipo_factura'];	
+	$tipo_factura = $consulta2TipoFactura['tipo_factura'];	
 }
 
 //CONSULTAR DATOS DE LA SECUENCIA DE FACTURACION

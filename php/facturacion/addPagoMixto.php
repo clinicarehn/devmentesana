@@ -27,6 +27,19 @@ $activo = 1;//SECUENCIA DE FACTURACION
 $efectivo = $_POST['efectivo_bill'];
 $tarjeta = 	$_POST['monto_tarjeta'];
 
+//CONSULTAMOS EL TIPO DE FACTURA
+$query_tipo_factura = "SELECT tipo_factura
+FROM facturas
+WHERE facturas_id = '$facturas_id'";
+$resultTipoFactura = $mysqli->query($query_tipo_factura) or die($mysqli->error);
+$consulta2TipoFactura = $resultTipoFactura->fetch_assoc();
+
+$tipo_factura = "";
+
+if($resultTipoFactura->num_rows>0){	
+	$tipo_factura = $consulta2TipoFactura['tipo_factura'];	
+}
+
 //CONSULTAR DATOS DE LA SECUENCIA DE FACTURACION
 $query_secuencia = "SELECT secuencia_facturacion_id, prefijo, siguiente AS 'numero', rango_final, fecha_limite, incremento, relleno
    FROM secuencia_facturacion
@@ -88,7 +101,34 @@ if($result_factura->num_rows==0){
 		SET 
 			siguiente = '$numero_secuencia_facturacion' 
 		WHERE secuencia_facturacion_id = '$secuencia_facturacion_id'";
-		$mysqli->query($update);	
+		$mysqli->query($update);
+
+		if($tipo_factura == 1){
+			//ACTUALIZAMOS EL ESTADO DE LA FACTURA
+			$update_factura = "UPDATE facturas
+				SET
+					estado = '$estado',
+					number = '$numero'
+				WHERE facturas_id = '$facturas_id'";
+			$mysqli->query($update_factura) or die($mysqli->error);	
+
+			//CONSULTAMOS EL NUMERO QUE SIGUE DE EN LA SECUENCIA DE FACTURACION
+			$numero_secuencia_facturacion = correlativo("siguiente", "secuencia_facturacion");
+			
+			//ACTUALIZAMOS LA SECUENCIA DE FACTURACION AL NUMERO SIGUIENTE		
+			$update = "UPDATE secuencia_facturacion 
+			SET 
+				siguiente = '$numero_secuencia_facturacion' 
+			WHERE secuencia_facturacion_id = '$secuencia_facturacion_id'";
+			$mysqli->query($update);
+		}else{
+			//ACTUALIZAMOS EL ESTADO DE LA FACTURA
+			$update_factura = "UPDATE facturas
+				SET
+					estado = '$estado',
+				WHERE facturas_id = '$facturas_id'";
+			$mysqli->query($update_factura) or die($mysqli->error);				
+		}		
 		
 		$datos = array(
 			0 => "Guardar", 
