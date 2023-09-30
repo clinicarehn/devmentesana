@@ -146,10 +146,7 @@ $('.FormularioAjax').submit(function(e){
 				}	
 
 				// Habilitar el botón después de completar la transacción
-				form.find('button[type="submit"]').prop('disabled', false);
-				
-				// Habilita solo el botón de "Cancelar" del swal
-  				swal.enableCancelButton();
+				form.find('button[type="submit"]').prop('disabled', false);			
 
 				return false;				
             },
