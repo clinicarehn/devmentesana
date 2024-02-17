@@ -183,8 +183,8 @@ $mysqli->close();//CERRAR CONEXIÓN
 				</div>	
 				<div class="form-row">
 					<div class="col-md-4 mb-3">
-					  <label for="sexo">Referido por:  </label>
-					  <select class="form-control" id="referido_id" name="referido_id" data-toggle="tooltip" data-placement="top" title="Parentesco">	
+					  <label for="sexo">Referido por:  <span class="priority">*<span/></label>
+					  <select class="form-control" id="referido_id" name="referido_id" required data-toggle="tooltip" data-placement="top" title="Referido por">	
 						 <option value="">Seleccione</option>
 					  </select>
 					</div>	
@@ -192,8 +192,7 @@ $mysqli->close();//CERRAR CONEXIÓN
 					  <label for="sexo">Profesional </label>
 					  <input type="text" id="profesional" name="profesional" class="form-control" placeholder="Profesional" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
 					</div>								
-				</div>					
-				
+				</div>
 			</form>
         </div>		
 		<div class="modal-footer">
