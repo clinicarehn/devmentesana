@@ -223,16 +223,6 @@ $mysqli->close();//CERRAR CONEXIÓN
 							</div>
 						</div>	 
 					</div>							
-				</div>
-				<div class="form-row" id="grupo_expediente">
-					<div class="col-md-6 mb-3">
-					  <label for="expedoente">Expediente</label>
-				     <input type="number" name="expediente" class="form-control" id="expediente" placeholder="Expediente o Identidad">
-					</div>
-					<div class="col-md-6 mb-3">
-					  <label for="edad">Edad</label>
-					  <input type="text" class="form-control" name="edad" id="edad" maxlength="100" readonly="readonly"/>
-					</div>				
 				</div>				
 				<div class="form-row">
 					<div class="col-md-8 mb-3">
