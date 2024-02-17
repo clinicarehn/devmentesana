@@ -295,18 +295,6 @@ $mysqli->close();//CERRAR CONEXIÓN
 					</div>
 				</div>	
 				<div class="form-row">
-					<div class="col-md-8 mb-3">
-					  <label for="sexo">Responsable </label>
-					  <input type="text" id="responsable" name="responsable" class="form-control" placeholder="Responsable" maxlength="70" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
-					</div>
-					<div class="col-md-4 mb-3">
-					  <label for="telefono">Parentesco </label>
-					  <select class="form-control" id="responsable_id" name="responsable_id" data-toggle="tooltip" data-placement="top" title="Parentesco">	
-						 <option value="">Seleccione</option>
-					  </select>
-					</div>					
-				</div>	
-				<div class="form-row">
 					<div class="col-md-4 mb-3">
 					  <label for="sexo">Referido por:  <span class="priority">*<span/></label>
 					  <select class="form-control" id="referido_id" name="referido_id" required data-toggle="tooltip" data-placement="top" title="Referido por">	
