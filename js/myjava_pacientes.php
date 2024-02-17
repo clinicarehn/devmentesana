@@ -1256,7 +1256,15 @@ $(document).ready(function(){
 			$("#formulario_pacientes #referido").hide();
 		}
     });
+
+	$("#form_main #nueva_empresa").on('click', function(e){
+		e.preventDefault();
+		swal({
+			title: "Mantenimiento", 
+			text: "Lo sentimos esta opcion se encuentra en desarrollo",
+			type: "warning", 
+			confirmButtonClass: 'btn-warning'
+		});	
+    });
 });
-
-
 </script>
