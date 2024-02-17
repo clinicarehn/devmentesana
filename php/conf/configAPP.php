@@ -5,7 +5,7 @@
 
     //DATOS DE CONEXION DEL CLIENTE
 	date_default_timezone_set('America/Tegucigalpa');
-    const SERVERURL = "http://localhost/githubMentesana/";
+    const SERVERURL = "http://localhost/devmentesana/";
 	const SERVEREMPRESA = "Mente Sana";
 	const SERVER = "localhost";
     const DB = "clinicarehn_clientes_mentesana";

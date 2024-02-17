@@ -1246,4 +1246,16 @@ $(document).ready(function(){
         $(this).find('#formulario_busqueda_municipios #buscar').focus();
     });
 });
+
+$(document).ready(function(){
+    $("#formulario_pacientes #referido_id").on('change', function(){
+        if($("#formulario_pacientes #referido_id").val() === "2"){
+			$("#formulario_pacientes #referido").show();
+		}else{
+			$("#formulario_pacientes #referido").hide();
+		}
+    });
+});
+
+
 </script>

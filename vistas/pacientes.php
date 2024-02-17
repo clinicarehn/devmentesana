@@ -187,7 +187,11 @@ $mysqli->close();//CERRAR CONEXIÓN
 					  <select class="form-control" id="referido_id" name="referido_id" data-toggle="tooltip" data-placement="top" title="Parentesco">	
 						 <option value="">Seleccione</option>
 					  </select>
-					</div>				
+					</div>	
+					<div class="col-md-4 mb-3" id="referido" style="display: none;">
+					  <label for="sexo">Profesional </label>
+					  <input type="text" id="profesional" name="profesional" class="form-control" placeholder="Profesional" maxlength="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+					</div>								
 				</div>					
 				
 			</form>

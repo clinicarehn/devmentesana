@@ -63,6 +63,30 @@ $mysqli->close();//CERRAR CONEXIÓN
 		<li class="breadcrumb-item active" id="acciones_factura"><span id="label_acciones_factura"></span>Almacén</li>
 	</ol>
 	
+    <div class="card mb-4">
+        <div class="card-body">
+            <form class="form-inline" id="form_main_productos">
+                <div class="form-group mx-sm-3 mb-1">
+                    <div class="input-group">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <div class="sb-nav-link-icon"></div>Estado
+                            </span>
+                            <select id="estado_producto" name="estado_producto" class="selectpicker" title="Estado"
+                                data-live-search="true">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mx-sm-3 mb-1">
+                    <button class="guardar btn btn-secondary" type="submit" id="buscar_productos">
+                        <div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i> Buscar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+		
 	<div class="table-responsive">
 		<form id="formPrincipal">
 			<div class="col-md-12 mb-3">

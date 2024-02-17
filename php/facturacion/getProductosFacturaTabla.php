@@ -16,7 +16,7 @@ INNER JOIN ubicacion AS u
 ON a.ubicacion_id = u.ubicacion_id
 INNER JOIN categoria_producto AS cp
 ON p.categoria_producto_id = cp.categoria_producto_id
-WHERE cp.nombre NOT IN ('Insumos')
+WHERE cp.nombre NOT IN ('Insumos') AND p.estado = 1
 GROUP BY p.productos_id
 ORDER BY p.nombre ASC";
 $result = $mysqli->query($consulta);	
