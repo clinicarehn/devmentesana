@@ -1251,6 +1251,7 @@ $(document).ready(function(){
     $("#formulario_pacientes #referido_id").on('change', function(){
         if($("#formulario_pacientes #referido_id").val() === "2"){
 			$("#formulario_pacientes #referido").show();
+			$("#formulario_pacientes #profesional").focus();
 		}else{
 			$("#formulario_pacientes #referido").hide();
 		}
