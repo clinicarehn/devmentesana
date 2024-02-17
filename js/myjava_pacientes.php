@@ -39,7 +39,37 @@ $(document).ready(function(){
 				confirmButtonClass: 'btn-danger'
 			});					 
 		}	
-	});	
+	});
+	
+	$('#form_main #nueva_empresa').on('click',function(){
+		if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+			$('#formulario_empresas #reg').show();
+			$('#formulario_empresas #edi').hide();
+			$('#formulario_empresas')[0].reset();	
+			$('#formulario_empresas #pro').val('Registro');
+			$("#formulario_empresas #rtn").attr('readonly', false);
+			$("#formulario_empresas #pais_id").val(1);
+			$('#formulario_empresas #validate').removeClass('bien_email');
+			$('#formulario_empresas #validate').removeClass('error_email');
+			$("#formulario_empresas #correo").css("border-color", "none");
+			$('#formulario_empresas #validate').html('');			
+			$('#formulario_empresas').attr({ 'data-form': 'save' }); 
+			$('#formulario_empresas').attr({ 'action': '<?php echo SERVERURL; ?>php/pacientes/agregarPacientes.php' });	
+			$('#modal_empresas').modal({
+				show:true,
+				keyboard: false,
+				backdrop:'static'
+			});
+			return false;
+		}else{
+			swal({
+				title: "Acceso Denegado", 
+				text: "No tiene permisos para ejecutar esta acción",
+				type: "error", 
+				confirmButtonClass: 'btn-danger'
+			});					 
+		}	
+	});
 
 	$('#form_main #profesion').on('click',function(){
 		if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
@@ -1255,16 +1285,6 @@ $(document).ready(function(){
 		}else{
 			$("#formulario_pacientes #referido").hide();
 		}
-    });
-
-	$("#form_main #nueva_empresa").on('click', function(e){
-		e.preventDefault();
-		swal({
-			title: "Mantenimiento", 
-			text: "Lo sentimos esta opcion se encuentra en desarrollo",
-			type: "warning", 
-			confirmButtonClass: 'btn-warning'
-		});	
     });
 });
 </script>
