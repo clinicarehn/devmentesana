@@ -487,13 +487,13 @@ $mysqli->close();//CERRAR CONEXIÓN
          <input type="text" placeholder="Buscar por: Expediente, Nombre, Apellido o Identidad" data-toggle="tooltip" data-placement="top" title="Buscar por: Expediente, Nombre, Apellido o Identidad" id="bs_regis" autofocus class="form-control" size="50"/>
       </div>  
 		<div class="form-group mr-1">
-			<button class="btn btn-primary ml-2" type="submit" id="nuevo-registro"><div class="sb-nav-link-icon"></div><i class="fas fa-user-plus fa-lg"></i> Clientes</button>
+			<button class="btn btn-primary ml-2" type="submit" id="nuevo-registro"><div class="sb-nav-link-icon"></div><i class="fas fa-user-plus fa-lg"></i> Registro Clientes</button>
 		</div>
 		<div class="form-group mr-1">
-			<button class="btn btn-primary ml-2" type="submit" id="nueva_empresa"><div class="sb-nav-link-icon"></div><i class="fas fa-building"></i> Empresas</button>
+			<button class="btn btn-primary ml-2" type="submit" id="nueva_empresa"><div class="sb-nav-link-icon"></div><i class="fas fa-building"></i> Registro Empresas</button>
 		</div>
 		<div class="form-group">
-			<button class="btn btn-primary ml-2" type="submit" id="profesion"><div class="sb-nav-link-icon"></div><i class="fas fa-user-plus fa-lg"></i> Profesión</button>
+			<button class="btn btn-primary ml-2" type="submit" id="profesion"><div class="sb-nav-link-icon"></div><i class="fas fa-user-plus fa-lg"></i> Registro Profesiones</button>
 		</div>	  	  
       <div class="form-group">
 	    <button class="btn btn-success ml-1" type="submit" id="reporte"><div class="sb-nav-link-icon" data-toggle="tooltip" data-placement="top" title="Exportar"></div><i class="fas fa-download fa-lg"></i> Exportar</button>
