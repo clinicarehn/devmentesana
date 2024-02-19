@@ -104,8 +104,38 @@ $result = $mysqli->query($select) or die($mysqli->error);
 if($result->num_rows==0){
 	$pacientes_id = correlativo('pacientes_id ', 'pacientes');
 	$insert = "INSERT INTO pacientes 
-		VALUES ('$pacientes_id','$expediente','$identidad','$nombre','$apellido','$sexo','$telefono1','$telefono2','$fecha_nacimiento','$correo','$fecha','$pais_id','$departamento_id','$municipio_id','$localidad','$religion_id','$profesion_id','$estado_civil','$responsable','$responsable_id','$usuario','$estado','$fecha_registro','$referido_id','$profesional')";
-	$query = $mysqli->query($insert);
+	(`pacientes_id`, `expediente`, `identidad`, `nombre`, `apellido`, `genero`, `telefono1`, `telefono2`, `fecha_nacimiento`, `email`, `fecha`, `pais_id`, `departamento_id`, `municipio_id`, `localidad`, `religion_id`, `profesion_id`, `estado_civil`, `responsable`, `responsable_id`, `usuario`, `estado`, `fecha_registro`, `referido_id`, `profesional`) 
+	VALUES 
+	(
+		'{$pacientes_id}', 
+		'{$expediente}', 
+		'{$identidad}', 
+		'{$nombre}', 
+		'{$apellido}', 
+		'{$sexo}', 
+		'{$telefono1}', 
+		'{$telefono2}', 
+		'{$fecha_nacimiento}', 
+		'{$correo}', 
+		'{$fecha}', 
+		'{$pais_id}', 
+		'{$departamento_id}', 
+		'{$municipio_id}', 
+		'{$localidad}', 
+		'{$religion_id}', 
+		'{$profesion_id}', 
+		'{$estado_civil}', 
+		'{$responsable}', 
+		'{$responsable_id}', 
+		'{$usuario}', 
+		'{$estado}', 
+		'{$fecha_registro}', 
+		'{$referido_id}', 
+		'{$profesional}'
+	)";	
+
+$query = $mysqli->query($insert);
+
 	
 	if($query){
 		$datos = array(

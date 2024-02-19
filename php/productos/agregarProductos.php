@@ -50,10 +50,10 @@ if(isset($_POST['cantidad'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
 	$cantidad = 0;
 }
 
-$precio_compra = $_POST['precio_compra'];
-$precio_venta = $_POST['precio_venta'];
-$cantidad_minima = $_POST['cantidad_minima'];
-$cantidad_maxima = $_POST['cantidad_maxima'];
+$precio_compra = $_POST['precio_compra'] === "" ? 0 : $_POST['precio_compra'];
+$precio_venta = $_POST['precio_venta'] === "" ? 0 : $_POST['precio_venta'];
+$cantidad_minima = $_POST['cantidad_minima'] === "" ? 0 : $_POST['cantidad_minima'];
+$cantidad_maxima = $_POST['cantidad_maxima'] === "" ? 0 : $_POST['cantidad_maxima'];
 
 if(isset($_POST['producto_activo'])){
 	if(isset($_POST['producto_activo'])){
@@ -86,9 +86,12 @@ $query = "SELECT productos_id
 $result = $mysqli->query($query) or die($mysqli->error);
 
 if($result->num_rows==0){
-	$productos_id  = correlativo('productos_id  ', 'productos');
+	$productos_id = correlativo('productos_id', 'productos');
 	$insert = "INSERT INTO productos 
-		VALUES('$productos_id','$almacen','$medida','$concentracion','$nombre','$descripcion','$categoria','$cantidad','$precio_compra','$precio_venta','$cantidad_minima','$cantidad_maxima','$estado','$isv','$usuario','$fecha_registro')";
+		(`productos_id`, `almacen_id`, `medida_id`, `concentracion`, `nombre`, `descripcion`, `categoria_producto_id`, `cantidad`, `precio_compra`, `precio_venta`, `cantidad_minima`, `cantidad_maxima`, `estado`, `isv`, `colaborador_id`, `fecha_registro`) 
+	VALUES 
+		('$productos_id', '$almacen', '$medida', '$concentracion', '$nombre', '$descripcion', '$categoria', '$cantidad', '$precio_compra', '$precio_venta', '$cantidad_minima', '$cantidad_maxima', '$estado', '$isv', '$usuario', '$fecha_registro')";
+
 	$query = $mysqli->query($insert) or die($mysqli->error);
 
     if($query){
@@ -125,7 +128,7 @@ if($result->num_rows==0){
 			$comentario_movimientos = "Ingreso de Producto";
 
 			if($cantidad>0){
-				$insert = "INSERT INTO movimientos VALUES('$movimientos_id','$productos_id','$documento','$cantidad','$0','$cantidad','$fecha_registro', '$comentario_movimientos')";
+				$insert = "INSERT INTO movimientos VALUES('$movimientos_id','$productos_id','$documento','$cantidad','0','$cantidad','$fecha_registro', '$comentario_movimientos')";
 				$mysqli->query($insert) or die($mysqli->error);
 			}		
 		}		
