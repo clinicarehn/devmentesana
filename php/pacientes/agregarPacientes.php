@@ -68,6 +68,7 @@ if(isset($_POST['referido_id'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
 }
 
 $localidad = cleanStringStrtolower($_POST['direccion']);
+$profesional = cleanStringStrtolower($_POST['profesional'] ?? "");
 $religion_id = 0;
 $profesion_id = 0;
 $identidad = $_POST['identidad'];
@@ -103,7 +104,7 @@ $result = $mysqli->query($select) or die($mysqli->error);
 if($result->num_rows==0){
 	$pacientes_id = correlativo('pacientes_id ', 'pacientes');
 	$insert = "INSERT INTO pacientes 
-		VALUES ('$pacientes_id','$expediente','$identidad','$nombre','$apellido','$sexo','$telefono1','$telefono2','$fecha_nacimiento','$correo','$fecha','$pais_id','$departamento_id','$municipio_id','$localidad','$religion_id','$profesion_id','$estado_civil','$responsable','$responsable_id','$usuario','$estado','$fecha_registro','$referido_id')";
+		VALUES ('$pacientes_id','$expediente','$identidad','$nombre','$apellido','$sexo','$telefono1','$telefono2','$fecha_nacimiento','$correo','$fecha','$pais_id','$departamento_id','$municipio_id','$localidad','$religion_id','$profesion_id','$estado_civil','$responsable','$responsable_id','$usuario','$estado','$fecha_registro','$referido_id','$profesional')";
 	$query = $mysqli->query($insert);
 	
 	if($query){
