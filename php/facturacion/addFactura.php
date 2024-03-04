@@ -205,7 +205,8 @@ if($pacientes_id != "" && $colaborador_id != "" && $servicio_id != ""){
 			SET
 				importe = '$total_despues_isv',
 				fecha = '$fecha',
-				usuario = '$usuario'				
+				usuario = '$usuario',
+				notas = '$notes'				
 			WHERE facturas_id = '$facturas_id'";
 		$mysqli->query($update);		
 

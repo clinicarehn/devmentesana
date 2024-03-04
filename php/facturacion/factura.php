@@ -192,7 +192,7 @@
 	<div>
 	    <p class="nota"><?php 
 			if($consulta_registro["notas"] != ""){
-				echo "<p class='h3'><b>Nota:</b> ".$consulta_registro["notas"]."</p>";
+				echo "<p><b>Nota:</b><br/> ".$consulta_registro["notas"]."</p>";
 			}		
 		?></p>
 		<p class="nota"><center><?php echo convertir($total_despues_isv);?></center></p>
