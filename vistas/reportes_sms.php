@@ -59,11 +59,15 @@ if($colaborador_id != "" || $colaborador_id != null){
 	
 	<div id="main_facturacion">
     <form class="form-inline" id="form_main">
-	  <div class="form-group mr-1">
-         <select id="profesional" name="profesional" class="form-control" data-toggle="tooltip" data-placement="top" title="Profesional">   				   		 
-			 <option value="">Seleccione</option>	         
-		 </select>		   
-      </div>	  
+		<div class="form-group mx-sm-3 mb-1">
+			<div class="input-group">				
+				<div class="input-group-append">				
+					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Profesional</span>
+				</div>
+				<select id="profesional" name="profesional" class="selectpicker" title="Profesional" data-live-search="true" data-size="7">
+				</select>
+			</div>
+		</div>		  
       <div class="form-group mr-1">
          <input type="date" required="required" id="fecha_i" name="fecha_i" value="<?php echo date ("Y-m-d");?>" class="form-control"/>
       </div>

@@ -45,6 +45,7 @@ function getServicio(){
         success: function(data){	
 		    $('#form_main #servicio').html("");
 			$('#form_main #servicio').html(data);
+			$('#form_main #servicio').selectpicker('refresh');
 		}			
      });	
 }
@@ -57,7 +58,8 @@ function getProfesionales(){
         url: url,
         success: function(data){	
 		    $('#form_main #colaborador').html("");
-			$('#form_main #colaborador').html(data);		
+			$('#form_main #colaborador').html(data);
+			$('#form_main #colaborador').selectpicker('refresh');
 		}			
      });	
 }

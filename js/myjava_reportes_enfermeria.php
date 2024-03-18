@@ -78,6 +78,7 @@ function getColaborador(){
         success: function(data){
 		    $('#form_main #profesional').html("");
 			$('#form_main #profesional').html(data);
+			$('#form_main #profesional').selectpicker('refresh');
         }
      });		
 }
@@ -91,7 +92,8 @@ function getReporte(){
 	    async: true,
         success: function(data){
 		    $('#form_main #reporte').html("");
-			$('#form_main #reporte').html(data);				
+			$('#form_main #reporte').html(data);	
+			$('#form_main #reporte').selectpicker('refresh');
         }
      });		
 }

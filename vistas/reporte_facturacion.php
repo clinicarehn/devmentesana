@@ -156,15 +156,15 @@ $mysqli->close();//CERRAR CONEXIÓN
     </div>
     <div class="card-body">
       <form id="form_main_facturacion_reportes" class="form-inline">
-        <div class="form-group mr-1">
-          <div class="input-group">
-            <div class="input-group-append">
+        <div class="form-group mx-sm-3 mb-1">
+          <div class="input-group">				
+            <div class="input-group-append">				
               <span class="input-group-text"><div class="sb-nav-link-icon"></div>Profesional</span>
             </div>
-            <select id="profesional" name="profesional" class="selectpicker" title="Profesional" data-live-search="true">
+            <select id="profesional" name="profesional" class="selectpicker" title="Profesional" data-live-search="true" data-size="7">
             </select>
           </div>
-        </div>
+        </div>	
         <div class="form-group mr-1">
           <div class="input-group">
             <div class="input-group-append">

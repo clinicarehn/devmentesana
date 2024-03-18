@@ -285,15 +285,15 @@ if($colaborador_id != "" || $colaborador_id != null){
 	</ol>
 	
     <form class="form-inline" id="main_form">
-		<div class="form-group mr-1">
+		<div class="form-group mx-sm-3 mb-1">
 			<div class="input-group">				
 				<div class="input-group-append">				
 					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Estado</span>
 				</div>
-				<select id="status" name="status" class="form-control">
-				</select>			 
-			</div>		   
-		</div> 		
+				<select id="status" name="status" class="selectpicker" title="Estado" data-live-search="true" data-size="7">
+				</select>
+			</div>
+		</div>		
       <div class="form-group mr-1">
          <input type="text" placeholder="Buscar por: Código, Nombre o Puesto" data-toggle="tooltip" data-placement="top" title="Buscar por: Código, Nombre o Puesto" id="bs-regis" size="50" autofocus class="form-control"/>
       </div>	  

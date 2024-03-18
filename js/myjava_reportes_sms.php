@@ -120,6 +120,7 @@ function getUsuario(){
 		success:function(data){		
 		   $('#form_main #usuario').html("");
 		   $('#form_main #usuario').html(data);
+		   $('#form_main #usuario').selectpicker('refresh');
 		}
 	});
 	return false;		
@@ -136,6 +137,7 @@ function getProfesional(){
 		success:function(data){		
 		   $('#form_main #profesional').html("");
 		   $('#form_main #profesional').html(data);
+		   $('#form_main #profesional').selectpicker('refresh');
 		}
 	});
 	return false;		
@@ -153,8 +155,10 @@ $(document).ready(function() {
 			data:'servicio='+servicio,
 			async: true,
             success: function(data){
-				$('#form_main #unidad').html(data);				
-				$('#form_main #profesional').html("");				
+				$('#form_main #unidad').html(data);
+				$('#form_main #unidad').selectpicker('refresh');
+				$('#form_main #profesional').html("");	
+				$('#form_main #profesional').selectpicker('refresh');
             }
          });
 		 
@@ -174,7 +178,8 @@ $(document).ready(function() {
 			async: true,
             data:'servicio='+servicio_id+'&puesto_id='+puesto_id,
             success: function(data){
-				$('#form_main #profesional').html(data);				
+				$('#form_main #profesional').html(data);
+				$('#form_main #profesional').selectpicker('refresh');
             }
          });
 		 

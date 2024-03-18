@@ -10,11 +10,16 @@ $(document).ready(function(){
 $(document).ready(function() {
 	$('#formulario_productos #categoria').on('change',function(){
 		evaluarCategoria();
-	});	
+	});
 	
 	funciones();
 	listar_productos();	
 });	
+
+$("#form_main_productos #buscar_productos").on("click", function(e){
+	e.preventDefault();
+	listar_productos();
+});
 
 function evaluarCategoria(){
 	if($('#formulario_productos #categoria').find('option:selected').text() == "Servicio"){
@@ -145,6 +150,7 @@ function funciones(){
 	getAlmacen();
 	getMedida();
 	getCategoria();
+	getEstado();
 }
 
 function getAlmacen(){
@@ -215,11 +221,16 @@ function caracteresDescripcion(){
 //FIN FUNCIONES
 
 var listar_productos = function(){
+	var estado = $("#form_main_productos #estado_producto").val() == "" ? 1 : $("#form_main_productos #estado_producto").val();
+
 	var table_productos  = $("#dataTableProductos").DataTable({
 		"destroy":true,	
 		"ajax":{
 			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/productos/getProductosTabla.php"			
+			"url":"<?php echo SERVERURL; ?>php/productos/getProductosTabla.php",
+            "data": {
+                "estado": estado
+            }						
 		},		
 		"columns":[
 			{"data":"producto"},
@@ -246,7 +257,7 @@ var listar_productos = function(){
 				titleAttr: 'Actualizar Productos',
 				className: 'btn btn-info',
 				action: 	function(){
-					listar_entrevista_ts();
+					listar_productos();
 				}
 			},	
 			{
@@ -466,4 +477,20 @@ $('#formulario_productos .switch').change(function(){
 	}
 });
 //FIN BOTON producto_activo
+
+function getEstado(){
+    var url = '<?php echo SERVERURL; ?>php/productos/getEstado.php';
+
+	$.ajax({
+        type: "POST",
+        url: url,
+	    async: true,
+        success: function(data){
+		    $('#form_main_productos #estado_producto').html("");
+			$('#form_main_productos #estado_producto').html(data);
+        	$('#form_main_productos #estado_producto').selectpicker('refresh');
+        }
+     });
+}
+
 </script>
