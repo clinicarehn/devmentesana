@@ -41,8 +41,9 @@ $año=date("Y", strtotime($fecha));
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Citas :: <?php echo SERVEREMPRESA;?></title>
-<link href="<?php echo SERVERURL; ?>/css/estilo-paginacion.css" rel="stylesheet">	
+    <link href="<?php echo SERVERURL; ?>/css/estilo-paginacion.css" rel="stylesheet">	
     <link href="<?php echo SERVERURL; ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
+	<link href="<?php echo SERVERURL; ?>bootstrap/css/bootstrap-select.min.css" rel="stylesheet" crossorigin="anonymous"/>
     <link href="<?php echo SERVERURL; ?>bootstrap/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous"/>
     <link href="<?php echo SERVERURL; ?>fontawesome/css/all.css" rel="stylesheet">	
     <link href="<?php echo SERVERURL; ?>css/style.css" rel="stylesheet"/>   
@@ -65,24 +66,26 @@ $año=date("Y", strtotime($fecha));
 			<li class="breadcrumb-item active" id="acciones_factura"><span id="label_acciones_factura"></span>Citas</li>
 		</ol>	
 		<form class="form-inline" id="botones_citas">
-		  <div class="form-group mr-1">
-			<div class="input-group">				
-				<div class="input-group-append">				
-					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Consultorio</span>
+			<div class="form-group mx-sm-3 mb-1">
+					<div class="input-group">				
+						<div class="input-group-append">				
+							<span class="input-group-text"><div class="sb-nav-link-icon"></div>Consultorio</span>
+						</div>
+						<select id="servicio" name="servicio" class="selectpicker" title="Consultorio" data-live-search="true" data-size="7">
+						</select>
+					</div>
+				</div>	
+
+				<div class="form-group mx-sm-3 mb-1">
+					<div class="input-group">				
+						<div class="input-group-append">				
+							<span class="input-group-text"><div class="sb-nav-link-icon"></div>Profesional</span>
+						</div>
+						<select id="medico_general" name="medico_general" class="selectpicker" title="Consultorio" data-live-search="true" data-size="7">
+						</select>
+					</div>
 				</div>
-				<select id="servicio" name="servicio" class="form-control" data-toggle="tooltip" data-placement="top" title="Consultorio">
-				</select> 
-			</div>
-		  </div>
-		  <div class="form-group mr-1">
-			<div class="input-group">				
-				<div class="input-group-append">				
-					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Profesional</span>
-				</div>
-				<select id="medico_general" name="medico_general" class="form-control" data-toggle="tooltip" data-placement="top" data-toggle="tooltip" data-placement="top" title="Profesional">
-				</select>
-			</div>			  
-		  </div>	  
+	  
 		  <div class="form-group mr-1">	
 			<button class="btn btn-primary" type="submit" id="refresh"><div class="sb-nav-link-icon"></div><i class="fas fa-sync-alt"></i> Actualizar</button>	  
 		  </div>  
@@ -124,6 +127,7 @@ $año=date("Y", strtotime($fecha));
 <script src="<?php echo SERVERURL; ?>js/query/jquery.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>bootstrap/js/popper.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="<?php echo SERVERURL; ?>bootstrap/js/bootstrap-select.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>js/main.js" crossorigin="anonymous"></script>
 <script src="<?php echo SERVERURL; ?>sweetalert/sweetalert.min.js" crossorigin="anonymous"></script>
 

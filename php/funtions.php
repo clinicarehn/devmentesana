@@ -296,7 +296,6 @@ function historial(){
 function correlativo($campo_id, $tabla){
 	$mysqli = connect_mysqli(); 
 	$correlativo = "SELECT MAX(".$campo_id.") AS max, COUNT(".$campo_id.") AS count FROM ".$tabla;
-
 	$result = $mysqli->query($correlativo);	
 	$correlativo2 = $result->fetch_assoc();
 	$numero = $correlativo2['max'];

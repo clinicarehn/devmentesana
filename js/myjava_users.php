@@ -1,7 +1,6 @@
 <script>
 $(document).ready(pagination(1));
  $(function(){
-	  listar_colaboradores_buscar();
 	  $('#nuevo-registro').on('click',function(e){
 		e.preventDefault();
 		if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2){
@@ -45,7 +44,6 @@ function clean(){
 	getEmpresa();
 	getTipo();
 	getEstatus();
-	listar_colaboradores_buscar();
 }
 /*INICIO DE FUNCIONES PARA ESTABLECER EL FOCUS PARA LAS VENTANAS MODALES*/
 $(document).ready(function(){
@@ -292,7 +290,6 @@ if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2){
 				var datos = eval(valores);
 				$('#reg').hide();
 				$('#editar_usuarios').show();
-				listar_colaboradores_buscar();
 				$('#formulario_editar #pro').val('Edicion');
 				$('#formulario_editar #id-registro1').val(id);
 			    $('#formulario_editar #colaborador1').val(datos[0]);
@@ -415,96 +412,6 @@ function parar() {
 $('#main_form #reporte').on('click', function(e){
     e.preventDefault();
     reporteEXCEL();
-});
-
-var listar_colaboradores_buscar = function(){
-	var table_colaboradores_buscar = $("#dataTableColaboradores").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/users/getColaboradoresTabla.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"colaborador"},
-			{"data":"identidad"},
-			{"data":"puesto"}			
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_colaboradores_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_colaboradores_busqueda_dataTable("#dataTableColaboradores tbody", table_colaboradores_buscar);
-}
-
-var view_colaboradores_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();
-		$('#formulario #colaborador').val(data.colaborador_id);
-		$('#modal_busqueda_colaboradores').modal('hide');
-	});
-}
-
-$('#formulario #buscar_colaboradores').on('click', function(e){
-	e.preventDefault();
-	listar_colaboradores_buscar();
-	$('#modal_busqueda_colaboradores').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});		 
-});
-
-var listar_empresas_buscar = function(){
-	var table_empresas_buscar = $("#dataTableEmpresa").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/users/getEmpresaTabla.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"},
-			{"data":"rtn"},
-			{"data":"ubicacion"}			
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_empresas_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_empresa_busqueda_dataTable("#dataTableEmpresa tbody", table_empresas_buscar);
-}
-
-var view_empresa_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();
-		$('#formulario #empresa').val(data.empresa_id);
-		$('#modal_busqueda_empresa').modal('hide');
-	});
-}
-
-$('#formulario #buscar_empresa').on('click', function(e){
-	e.preventDefault();
-	listar_empresas_buscar();
-	$('#modal_busqueda_empresa').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});		 
 });
 
 $(document).ready(function(){

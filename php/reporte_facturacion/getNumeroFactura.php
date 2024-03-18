@@ -26,4 +26,3 @@ echo $numero;
 
 $result->free();//LIMPIAR RESULTADO
 $mysqli->close();//CERRAR CONEXIÓN
-?>

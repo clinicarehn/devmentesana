@@ -1327,7 +1327,8 @@ function getColaborador_id(dato){
 				return false;				  
 		  }else{;			 			 
 		 	  $('#ModalEdit #medico1').val(data);	
-			  $('#ModalEdit #colaborador').val(data);	  
+			  $('#ModalEdit #colaborador').val(data);	
+			  $('#ModalEdit #colaborador').selectpicker('refresh');
 		  }		  		  		  			  
 		 }
 	});
@@ -1344,6 +1345,7 @@ function getHora(dato){
 		data:'agenda_id='+dato,
 		success:function(data){			
 		   $('#ModalEdit #hora_citaeditend').val(data);	
+		   $('#ModalEdit #hora_citaeditend').selectpicker('refresh');
 		}
 	});
 	return false;		
@@ -1358,7 +1360,8 @@ function getFechaInicio(dato){
 		async: true,
 		data:'agenda_id='+dato,
 		success:function(data){			
-		   $('#ModalEdit #fecha_citaedit').val(data);		  		  			  
+		   $('#ModalEdit #fecha_citaedit').val(data);
+		   $('#ModalEdit #fecha_citaedit').selectpicker('refresh');	  		  			  
 		}
 	});
 	return false;		
@@ -1373,7 +1376,8 @@ function getHoraInicio(dato){
 		async: true,
 		data:'agenda_id='+dato,
 		success:function(data){			
-		   $('#ModalEdit #hora_nueva').val(data); 		   
+		   $('#ModalEdit #hora_nueva').val(data); 
+		   $('#ModalEdit #hora_nueva').selectpicker('refresh');	   
 		}
 	});
 	return false;		
@@ -1850,6 +1854,7 @@ function getHoraConsulta(){
         success: function(data){	
 		    $('#form-editevent #hora_nueva').html("");
 			$('#form-editevent #hora_nueva').html(data);
+			$('#form-editevent #hora_nueva').selectpicker('refresh');hora_nueva
 		}			
      });	
 }
@@ -1954,7 +1959,8 @@ function getServicio(){
         url: url,
         success: function(data){	
 		    $('#botones_citas #servicio').html("");
-			$('#botones_citas #servicio').html(data);				
+			$('#botones_citas #servicio').html(data);
+			$('#botones_citas #servicio').selectpicker('refresh');			
 		}			
      });	
 }	
@@ -1968,12 +1974,15 @@ function getProfesionales(){
         success: function(data){	
 		    $('#botones_citas #medico_general').html("");
 			$('#botones_citas #medico_general').html(data);
+			$('#botones_citas #medico_general').selectpicker('refresh');
 
 		    $('#form-editevent #colaborador').html("");
 			$('#form-editevent #colaborador').html(data);
+			$('#form-editevent #colaborador').selectpicker('refresh');
 
 		    $('#formulario_ausencias #medico_ausencia').html("");
-			$('#formulario_ausencias #medico_ausencia').html(data);				
+			$('#formulario_ausencias #medico_ausencia').html(data);	
+			$('#formulario_ausencias #medico_ausencia').selectpicker('refresh');			
 		}			
      });	
 }	
@@ -2230,47 +2239,4 @@ $(document).ready(function(e) {
    });
 });
 //FIN DE BLOQUEQUEAR FECHA EN EL FORMULARIO DE SOBRECUPO
-$('#form-editevent #buscar_profesional').on('click', function(e){
-	listar_colaboradores_buscar();
-	 $('#modal_busqueda_colaboradores').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});	 
-});
-
-var listar_colaboradores_buscar = function(){
-	var table_colaboradores_buscar = $("#dataTableColaboradores").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/facturacion/getColaboradoresTabla.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"colaborador"},
-			{"data":"identidad"},
-			{"data":"puesto"}			
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_colaboradores_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_colaboradores_busqueda_dataTable("#dataTableColaboradores tbody", table_colaboradores_buscar);
-}
-
-var view_colaboradores_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#form-editevent #colaborador').val(data.colaborador_id);
-		$('#modal_busqueda_colaboradores').modal('hide');
-	});
-}
 </script>

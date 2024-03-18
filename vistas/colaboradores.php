@@ -82,20 +82,29 @@ if($colaborador_id != "" || $colaborador_id != null){
 				</div>				
 				<div class="form-row">
 					<div class="col-md-4 mb-3">
-					  <label for="nombre">Empresa <span class="priority">*<span/></label>
-					  <select id="empresa" name="empresa" class="form-control" data-toggle="tooltip" data-placement="top" title="Seleccione la Empresa" required>		   
-                      </select>
+						<label for="empresa">Empresa <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="empresa" name="empresa" required data-live-search="true"
+								title="Empresa" data-width="100%" data-size="7">
+							</select>
+						</div>
 					</div>
 					<div class="col-md-4 mb-3">
-					  <label for="apellido">Puesto <span class="priority">*<span/></label>
-					  <select id="puesto" name="puesto" class="form-control" data-toggle="tooltip" data-placement="top" title="Seleccione el Puesto" required>		   
-					  </select>
+						<label for="puesto">Puesto <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="puesto" name="puesto" required data-live-search="true"
+								title="Puesto" data-width="100%" data-size="7">
+							</select>
+						</div>
 					</div>
 					<div class="col-md-4 mb-3">
-					  <label for="fecha">Estatus <span class="priority">*<span/></label>
-					  <select id="estatus" name="estatus" class="form-control" data-toggle="tooltip" data-placement="top" title="Estatus" required>		   
-                      </select>
-					</div>					
+						<label for="estatus">Estado <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="estatus" name="estatus" required data-live-search="true"
+								title="Estado" data-width="100%" data-size="7">
+							</select>
+						</div>
+					</div>				
 				</div>								  
 			</form>
         </div>
@@ -205,24 +214,30 @@ if($colaborador_id != "" || $colaborador_id != null){
 					  <input type="hidden" id="id-registro" name="id-registro" class="form-control"/>
 					</div>				
 				</div>
-				<div class="form-row" id="grupo_expediente">
+				<div class="form-row">
 					<div class="col-md-4 mb-3">
-						<label for="nombre">Puesto <span class="priority">*<span/></label>
-					   <select id="puesto_id" name="puesto_id" class="form-control" data-toggle="tooltip" data-placement="top" title="Seleccione">
-							<option value="">Seleccione</option>
-                       </select>
-					</div>	
+						<label for="puesto_id">Puesto <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="puesto_id" name="puesto_id" required data-live-search="true"
+								title="Puesto" data-width="100%" data-size="7">
+							</select>
+						</div>
+					</div>
 					<div class="col-md-4 mb-3">
-					   <label for="nombre">Colaborador <span class="priority">*<span/></label>
-					   <select id="colaborador_id" name="colaborador_id" class="form-control" data-toggle="tooltip" data-placement="top" title="Seleccione">
-							<option value="">Seleccione</option>
-                       </select>	
-					</div>	
+						<label for="colaborador_id">Colaborador <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="colaborador_id" name="colaborador_id" required data-live-search="true"
+								title="Colaborador" data-width="100%" data-size="7">
+							</select>
+						</div>
+					</div>
 					<div class="col-md-4 mb-3">
-					   <label for="nombre">Jornada <span class="priority">*<span/></label>
-					   <select id="jornada_id" name="jornada_id" class="form-control" data-toggle="tooltip" data-placement="top" title="Seleccione">	
-							<option value="">Seleccione</option>
-                       </select>
+						<label for="jornada_id">Jornada <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="jornada_id" name="jornada_id" required data-live-search="true"
+								title="Jornada" data-width="100%" data-size="7">
+							</select>
+						</div>
 					</div>			
 				</div>	
 				<div class="form-row" id="grupo_expediente">

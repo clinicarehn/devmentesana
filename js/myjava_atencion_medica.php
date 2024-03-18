@@ -223,9 +223,11 @@ function getColaborador(){
         success: function(data){
 		    $('#registro_transito_eviada #enviada').html("");
 			$('#registro_transito_eviada #enviada').html(data);
+			$('#registro_transito_eviada #enviada').selectpicker('refresh');
 
 		    $('#formulario_transito_recibida #recibida').html("");
 			$('#formulario_transito_recibida #recibida').html(data);		
+			$('#formulario_transito_recibida #recibida').selectpicker('refresh');
         }
      });		
 }
@@ -1390,9 +1392,11 @@ function getServicioTransito(){
         success: function(data){
 		    $('#formulario_transito_enviada #servicio').html("");
 			$('#formulario_transito_enviada #servicio').html(data);
+			$('#formulario_transito_enviada #servicio').selectpicker('refresh');
 			
 		    $('#formulario_transito_recibida #servicio').html("");
-			$('#formulario_transito_recibida #servicio').html(data);			
+			$('#formulario_transito_recibida #servicio').html(data);
+			$('#formulario_transito_recibida #servicio').selectpicker('refresh');			
         }
      });		
 }
@@ -1409,6 +1413,7 @@ function getDescuento(){
         success: function(data){
 		    $('#formulario_metodoPago #descuento').html("");
 			$('#formulario_metodoPago #descuento').html(data);
+			$('#formulario_metodoPago #descuento').selectpicker('refresh');
         }
      });		
 }
@@ -1424,7 +1429,8 @@ function getTipoPago(){
 	    async: true,
         success: function(data){
 		    $('#formulario_metodoPago #tipo_pago').html("");
-			$('#formulario_metodoPago #tipo_pago').html(data);		
+			$('#formulario_metodoPago #tipo_pago').html(data);
+			$('#formulario_metodoPago #tipo_pago').selectpicker('refresh');
         }
      });		
 }
@@ -1460,12 +1466,15 @@ function getPacientes(){
         success: function(data){
 		    $('#formulario_atenciones #paciente_consulta').html("");
 			$('#formulario_atenciones #paciente_consulta').html(data);
+			$('#formulario_atenciones #paciente_consulta').selectpicker('refresh');
 
 		    $('#formulario_transito_enviada #paciente_te').html("");
 			$('#formulario_transito_enviada #paciente_te').html(data);
+			$('#formulario_transito_enviada #paciente_te').selectpicker('refresh');
 
 		    $('#formulario_transito_recibida #paciente_tr').html("");
-			$('#formulario_transito_recibida #paciente_tr').html(data);				
+			$('#formulario_transito_recibida #paciente_tr').html(data);	
+			$('#formulario_transito_recibida #paciente_tr').selectpicker('refresh');
         }
      });	
 }
@@ -1481,7 +1490,8 @@ function getReligion(){
 	    async: true,
         success: function(data){
 		    $('#formulario_atenciones #religion_id').html("");
-			$('#formulario_atenciones #religion_id').html(data);		
+			$('#formulario_atenciones #religion_id').html(data);
+			$('#formulario_atenciones #religion_id').selectpicker('refresh');	
         }
      });	
 }
@@ -1497,7 +1507,8 @@ function getEstadoCivl(){
 	    async: true,
         success: function(data){
 		    $('#formulario_atenciones #estado_civil').html("");
-			$('#formulario_atenciones #estado_civil').html(data);		
+			$('#formulario_atenciones #estado_civil').html(data);
+			$('#formulario_atenciones #estado_civil').selectpicker('refresh');	
         }
      });	
 }
@@ -1513,7 +1524,8 @@ function getProfesion(){
 	    async: true,
         success: function(data){
 		    $('#formulario_atenciones #profesion_id').html("");
-			$('#formulario_atenciones #profesion_id').html(data);	
+			$('#formulario_atenciones #profesion_id').html(data);
+			$('#formulario_atenciones #profesion_id').selectpicker('refresh');	
         }
      });	
 }
@@ -1548,6 +1560,7 @@ function getEstado(){
         success: function(data){		
 		    $('#form_main #estado').html("");
 			$('#form_main #estado').html(data);	
+			$('#form_main #estado').selectpicker('refresh');
 		}			
      });		
 }
@@ -1607,7 +1620,8 @@ function getTipoTarifa(){
 	   url:url,
 	   success:function(data){
 	      $('#formulario_metodoPago #tipo_tarifa').html("");
-		  $('#formulario_metodoPago #tipo_tarifa').html(data); 
+		  $('#formulario_metodoPago #tipo_tarifa').html(data);
+		  $('#formulario_metodoPago #tipo_tarifa').selectpicker('refresh');	 
 	  }
 	});
 	return false;	
@@ -1623,6 +1637,7 @@ function getConsultorio(){
 	   success:function(data){
 	      $('#formulario_atenciones #servicio_id').html("");
 		  $('#formulario_atenciones #servicio_id').html(data);  
+		  $('#formulario_atenciones #servicio_id').selectpicker('refresh');	 
 	  }
 	});
 	return false;	
@@ -1719,15 +1734,6 @@ $('#formulario_transito_recibida #buscar_colaboradores_tr').on('click', function
 	});		 
 });
 
-$('#formulario_atenciones #buscar_pacientes_atenciones').on('click', function(e){
-	listar_pacientes_buscar_atenciones();
-	 $('#modal_busqueda_pacientes').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});	 
-});
-
 $('#formulario_atenciones #buscar_religion_atenciones').on('click', function(e){
 	listar_religion_buscar();
 	 $('#modal_busqueda_religion').modal({
@@ -1746,179 +1752,7 @@ $('#formulario_atenciones #buscar_profesion_atenciones').on('click', function(e)
 	});	 
 });
 
-$('#formulario_atenciones #buscar_servicios_atenciones').on('click', function(e){
-	listar_servicios_buscar();
-	 $('#modal_busqueda_servicios').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});	 
-});
-
 //INICIO FORMULARIO DE BUSQUEDA
-var listar_pacientes_buscar_atenciones = function(){
-	var table_pacientes_buscar_atenciones = $("#dataTablePacientes").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/facturacion/getPacientesTabla.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"paciente"},
-			{"data":"identidad"},
-			{"data":"expediente"},
-			{"data":"email"}			
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_pacientes_buscar_atenciones.search('').draw();
-	$('#buscar').focus();
-	
-	view_pacientes_busqueda_atenciones_dataTable("#dataTablePacientes tbody", table_pacientes_buscar_atenciones);
-}
-
-var view_pacientes_busqueda_atenciones_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_atenciones #pacientes_id').val(data.pacientes_id);
-		$('#formulario_atenciones #paciente_consulta').val(data.pacientes_id);
-		
-		var url = '<?php echo SERVERURL; ?>php/atencion_pacientes/buscar_expediente.php';
-        var pacientes_id = data.pacientes_id;
-	    $.ajax({
-		   type:'POST',
-		   url:url,
-		   data:'pacientes_id='+pacientes_id,
-		   success:function(data){
-				var array = eval(data);		  
-				$('#formulario_atenciones #identidad').val(array[0]);
-				$('#formulario_atenciones #nombre').val(array[1]);					 
-				$('#formulario_atenciones #edad').val(array[2]);		
-				$('#formulario_atenciones #procedencia').val(array[3]);
-				$('#formulario_atenciones #religion_id').val(array[4]);
-				$('#formulario_atenciones #profesion_id').val(array[5]);
-				$('#formulario_atenciones #paciente_consulta').val(array[6]);
-				$('#formulario_atenciones #antecedentes').val(array[7]);
-				$('#formulario_atenciones #historia_clinica').val(array[8]);
-				$('#formulario_atenciones #exame_fisico').val(array[9]);	
-				$('#formulario_atenciones #seguimiento_read').val(array[10]);
-				$('#formulario_atenciones #diagnostico').val(array[11]);				
-				$('#formulario_atenciones #fecha_nac').val(array[12]);				
-				$("#reg_atencion").attr('disabled', false);
-				return false;			 				
-			}		  			  
-	    });
-		
-		$('#modal_busqueda_pacientes').modal('hide');
-	});
-}
-
-var listar_servicios_buscar = function(){
-	var table_servicios_buscar = $("#dataTableServicios").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/citas/getServiciosTable.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"}		
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_servicios_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_servicios_busqueda_dataTable("#dataTableServicios tbody", table_servicios_buscar);
-}
-
-var view_servicios_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_atenciones #servicio_id').val(data.servicio_id);
-		$('#modal_busqueda_servicios').modal('hide');
-	});
-}
-
-var listar_religion_buscar = function(){
-	var table_religion_buscar = $("#dataTableReligion").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/pacientes/getReligionTable.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"}		
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_religion_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_religion_busqueda_dataTable("#dataTableReligion tbody", table_religion_buscar);
-}
-
-var view_religion_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_atenciones #religion_id').val(data.religion_id);
-		$('#modal_busqueda_religion').modal('hide');
-	});
-}
-
-var listar_profesion_buscar = function(){
-	var table_profeision_buscar = $("#dataTableProfesiones").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/pacientes/getProfesionTable.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"}		
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_profeision_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_profesion_busqueda_dataTable("#dataTableProfesiones tbody", table_profeision_buscar);
-}
-
-var view_profesion_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_atenciones #profesion_id').val(data.profesion_id);
-		$('#modal_busqueda_profesion').modal('hide');
-	});
-}
-
 var listar_pacientes_buscar_te = function(){
 	var table_pacientes_buscar_te = $("#dataTablePacientes").DataTable({		
 		"destroy":true,	
@@ -2176,8 +2010,6 @@ $('#acciones_atras').on('click', function(e){
 
 $(document).ready(function(){
 	getServicio();
-	listar_pacientes_buscar();
-	listar_servicios_buscar();
 	listar_servicios_factura_buscar();
 	listar_productos_facturas_buscar();
 });

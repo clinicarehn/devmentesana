@@ -19,6 +19,7 @@ $(document).ready(function(){
 			$("#formulario_pacientes #fecha").attr('readonly', false);
 			$("#formulario_pacientes #identidad").attr('readonly', false);
 			$("#formulario_pacientes #pais_id").val(1);
+			$('#formulario_pacientes #pais_id').selectpicker('refresh');
 			$('#formulario_pacientes #validate').removeClass('bien_email');
 			$('#formulario_pacientes #validate').removeClass('error_email');
 			$("#formulario_pacientes #correo").css("border-color", "none");
@@ -49,12 +50,13 @@ $(document).ready(function(){
 			$('#formulario_empresas #pro').val('Registro');
 			$("#formulario_empresas #rtn").attr('readonly', false);
 			$("#formulario_empresas #pais_id").val(1);
+			$('#formulario_empresas #pais_id').selectpicker('refresh');
 			$('#formulario_empresas #validate').removeClass('bien_email');
 			$('#formulario_empresas #validate').removeClass('error_email');
 			$("#formulario_empresas #correo").css("border-color", "none");
 			$('#formulario_empresas #validate').html('');			
 			$('#formulario_empresas').attr({ 'data-form': 'save' }); 
-			$('#formulario_empresas').attr({ 'action': '<?php echo SERVERURL; ?>php/pacientes/agregarPacientes.php' });	
+			$('#formulario_empresas').attr({ 'action': '<?php echo SERVERURL; ?>php/pacientes/agregarEmpresas.php' });	
 			$('#modal_empresas').modal({
 				show:true,
 				keyboard: false,
@@ -222,6 +224,7 @@ function getStatus(){
         success: function(data){	
 		    $('#form_main #estado').html("");
 			$('#form_main #estado').html(data);
+			$('#form_main #estado').selectpicker('refresh');
 		}			
      });		
 }
@@ -236,6 +239,11 @@ function getReferido(){
         success: function(data){	
 		    $('#formulario_pacientes #referido_id').html("");
 			$('#formulario_pacientes #referido_id').html(data);
+			$('#formulario_pacientes #referido_id').selectpicker('refresh');
+
+		    $('#formulario_empresas #referido_id').html("");
+			$('#formulario_empresas #referido_id').html(data);
+			$('#formulario_empresas #referido_id').selectpicker('refresh');			
 		}			
      });		
 }
@@ -379,18 +387,23 @@ function editarRegistro(pacientes_id){
 					$('#formulario_pacientes #lastname').val(datos[1]);	
 					$('#formulario_pacientes #telefono1').val(datos[2]);	
 					$('#formulario_pacientes #telefono2').val(datos[3]);
-					$('#formulario_pacientes #sexo').val(datos[4]);					
+					$('#formulario_pacientes #sexo').val(datos[4]);
+					$('#formulario_pacientes #sexo').selectpicker('refresh');				
 					$('#formulario_pacientes #correo').val(datos[5]);
 					$('#formulario_pacientes #edad').val(datos[6]);	
 					$('#formulario_pacientes #expediente').val(datos[7]);
 					$('#formulario_pacientes #direccion').val(datos[8]);					
 					$('#formulario_pacientes #fecha_nac').val(datos[9]);
 					$('#formulario_pacientes #departamento_id').val(datos[10]);
+					$('#formulario_pacientes #departamento_id').selectpicker('refresh');
 					getMunicipioEditar(datos[10], datos[11]);
 					$('#formulario_pacientes #pais_id').val(datos[12]);
+					$('#formulario_pacientes #pais_id').selectpicker('refresh');
 					$('#formulario_pacientes #responsable').val(datos[13]);
 					$('#formulario_pacientes #responsable_id').val(datos[14]);
+					$('#formulario_pacientes #responsable_id').selectpicker('refresh');
 					$('#formulario_pacientes #referido_id').val(datos[15]);
+					$('#formulario_pacientes #referido_id').selectpicker('refresh');
 					$('#formulario_pacientes #identidad').val(datos[16]);
 					$("#formulario_pacientes #identidad").attr('readonly', true);
 					$("#formulario_pacientes #fecha").attr('readonly', true);
@@ -837,9 +850,11 @@ function getSexo(){
         success: function(data){	
 		    $('#formulario_pacientes #sexo').html("");
 			$('#formulario_pacientes #sexo').html(data);
+			$('#formulario_pacientes #sexo').selectpicker('refresh');
 
 		    $('#formulario_agregar_expediente_manual #sexo_manual').html("");
-			$('#formulario_agregar_expediente_manual #sexo_manual').html(data);		
+			$('#formulario_agregar_expediente_manual #sexo_manual').html(data);
+			$('#formulario_agregar_expediente_manual #sexo_manual').selectpicker('refresh');
 		}			
      });		
 }
@@ -1037,6 +1052,11 @@ function getResponsable(){
         success: function(data){	
 		    $('#formulario_pacientes #responsable_id').html("");
 			$('#formulario_pacientes #responsable_id').html(data);
+			$('#formulario_pacientes #responsable_id').selectpicker('refresh');
+
+		    $('#formulario_empresas #responsable_id').html("");
+			$('#formulario_empresas #responsable_id').html(data);
+			$('#formulario_empresas #responsable_id').selectpicker('refresh');			
 		}			
      });		
 }
@@ -1051,6 +1071,11 @@ function getDepartamentos(){
         success: function(data){	
 		    $('#formulario_pacientes #departamento_id').html("");
 			$('#formulario_pacientes #departamento_id').html(data);
+			$('#formulario_pacientes #departamento_id').selectpicker('refresh');
+
+		    $('#formulario_empresas #departamento_id').html("");
+			$('#formulario_empresas #departamento_id').html(data);
+			$('#formulario_empresas #departamento_id').selectpicker('refresh');			
 		}			
      });		
 }
@@ -1067,6 +1092,11 @@ function getMunicipio(){
 	   success:function(data){
 		  $('#formulario_pacientes #municipio_id').html("");
 		  $('#formulario_pacientes #municipio_id').html(data);  
+		  $('#formulario_pacientes #municipio_id').selectpicker('refresh');
+
+		  $('#formulario_empresas #municipio_id').html("");
+		  $('#formulario_empresas #municipio_id').html(data);  
+		  $('#formulario_empresas #municipio_id').selectpicker('refresh');		  
 	  }
   });	
 }
@@ -1083,7 +1113,28 @@ $(document).ready(function() {
 		   data:'departamento_id='+departamento_id,
 		   success:function(data){
 		      $('#formulario_pacientes #municipio_id').html("");
-			  $('#formulario_pacientes #municipio_id').html(data);		  
+			  $('#formulario_pacientes #municipio_id').html(data);	
+			  $('#formulario_pacientes #municipio_id').selectpicker('refresh');			  
+		  }
+	  });
+	  return false;			 				
+    });					
+});
+
+$(document).ready(function() {
+	$('#formulario_empresas #departamento_id').on('change', function(){
+		var url = '../php/pacientes/getMunicipio.php';
+       		
+		var departamento_id = $('#formulario_empresas #departamento_id').val();
+		
+	    $.ajax({
+		   type:'POST',
+		   url:url,
+		   data:'departamento_id='+departamento_id,
+		   success:function(data){
+		      $('#formulario_empresas #municipio_id').html("");
+			  $('#formulario_empresas #municipio_id').html(data);	
+			  $('#formulario_empresas #municipio_id').selectpicker('refresh');	 			  
 		  }
 	  });
 	  return false;			 				
@@ -1100,7 +1151,11 @@ function getMunicipioEditar(departamento_id, municipio_id){
 	   success:function(data){
 	      $('#formulario_pacientes #municipio_id').html("");
 		  $('#formulario_pacientes #municipio_id').html(data);
-		  $('#formulario_pacientes #municipio_id').val(municipio_id);		  
+		  $('#formulario_pacientes #municipio_id').val(municipio_id);
+		  
+	      $('#formulario_empresas #municipio_id').html("");
+		  $('#formulario_empresas #municipio_id').html(data);
+		  $('#formulario_empresas #municipio_id').val(municipio_id);		  
 	  }
 	});
 	return false;		
@@ -1116,164 +1171,18 @@ function getPais(){
         success: function(data){	
 		    $('#formulario_pacientes #pais_id').html("");
 			$('#formulario_pacientes #pais_id').html(data);
+			$('#formulario_pacientes #pais_id').selectpicker('refresh');
+
+		    $('#formulario_empresas #pais_id').html("");
+			$('#formulario_empresas #pais_id').html(data);
+			$('#formulario_empresas #pais_id').selectpicker('refresh');			
 		}			
      });		
 }
 
-$('#formulario_pacientes #buscar_pais_pacientes').on('click', function(e){
-	listar_pais_buscar(); 
-	$('#modal_busqueda_pais').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});			
-});
-
-$('#formulario_pacientes #buscar_departamento_pacientes').on('click', function(e){
-	listar_departamentos_buscar(); 
-	$('#modal_busqueda_departamentos').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});			
-});
-
-$('#formulario_pacientes #buscar_municipio_pacientes').on('click', function(e){
-	if($('#formulario_pacientes #departamento_id').val() == "" || $('#formulario_pacientes #departamento_id').val() == null){
-		swal({
-			title: "Error", 
-			text: "Lo sentimos el departamento no debe estar vacío, antes de seleccionar esta opción por favor seleccione un departamento, por favor corregir",
-			type: "error", 
-			confirmButtonClass: 'btn-danger'
-		});			
-	}else{
-		listar_municipios_buscar();
-		 $('#modal_busqueda_municipios').modal({
-			show:true,
-			keyboard: false,
-			backdrop:'static'
-		});		
-	}	
-});
-
-var listar_pais_buscar = function(){
-	var table_pais_buscar = $("#dataTablePais").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"../php/pacientes/getPaisTabla.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"}		
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_pais_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_pais_busqueda_dataTable("#dataTablePais tbody", table_pais_buscar);
-}
-
-var view_pais_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_pacientes #pais_id').val(data.pais_id);
-		$('#modal_busqueda_pais').modal('hide');
-	});
-}
-
-var listar_departamentos_buscar = function(){
-	var table_departamentos_buscar = $("#dataTableDepartamentos").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"../php/pacientes/getDepartamentosTabla.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"}		
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_departamentos_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_departamentos_busqueda_dataTable("#dataTableDepartamentos tbody", table_departamentos_buscar);
-}
-
-var view_departamentos_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_pacientes #departamento_id').val(data.departamento_id);
-		getMunicipio();
-		$('#modal_busqueda_departamentos').modal('hide');
-	});
-}
-
-var listar_municipios_buscar = function(){
-	var departamento = $('#formulario_pacientes #departamento_id').val();
-	var table_municipios_buscar = $("#dataTableMunicipios").DataTable({
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"../php/pacientes/getMunicipiosTabla.php",
-			"data":{ 'departamento' : departamento },
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"municipio"},
-			{"data":"departamento"}			
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_municipios_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_municipios_busqueda_dataTable("#dataTableMunicipios tbody", table_municipios_buscar);
-}
-
-var view_municipios_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_pacientes #municipio_id').val(data.municipio_id);
-		$('#modal_busqueda_municipios').modal('hide');
-	});
-}
-
 $(document).ready(function(){
-    $("#modal_busqueda_pais").on('shown.bs.modal', function(){
-        $(this).find('#formulario_busqueda_pais #buscar').focus();
-    });
-});
-
-$(document).ready(function(){
-    $("#modal_busqueda_departamentos").on('shown.bs.modal', function(){
-        $(this).find('#formulario_busqueda_departamentos #buscar').focus();
-    });
-});
-
-$(document).ready(function(){
-    $("#modal_busqueda_municipios").on('shown.bs.modal', function(){
-        $(this).find('#formulario_busqueda_municipios #buscar').focus();
+    $("#modal_empresas").on('shown.bs.modal', function(){
+        $(this).find('#formulario_empresas #empresa').focus();
     });
 });
 
@@ -1286,5 +1195,14 @@ $(document).ready(function(){
 			$("#formulario_pacientes #referido").hide();
 		}
     });
+
+    $("#formulario_empresas #referido_id").on('change', function(){
+        if($("#formulario_empresas #referido_id").val() === "2"){
+			$("#formulario_empresas #referido").show();
+			$("#formulario_empresas #profesional").focus();
+		}else{
+			$("#formulario_empresas #referido").hide();
+		}
+    });	
 });
 </script>

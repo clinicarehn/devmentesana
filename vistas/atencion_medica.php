@@ -83,13 +83,12 @@ if($colaborador_id != "" || $colaborador_id != null){
 					</div>	
 					<div class="form-row">
 						<div class="col-md-6 mb-3">
-						  <label for="expedoente">Paciente <span class="priority">*<span/></label>
-						  <div class="input-group mb-3">
-							  <select id="paciente_consulta" name="paciente_consulta" class="form-control" data-toggle="tooltip" data-placement="top" title="Pacientes"></select>
-							  <div class="input-group-append" id="buscar_pacientes_atenciones">				
-								<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-							  </div>
-						   </div>						  
+							<label for="paciente_consulta">Paciente <span class="priority">*<span /></label>
+							<div class="input-group mb-3">
+								<select class="selectpicker" id="paciente_consulta" name="paciente_consulta" required data-live-search="true"
+									title="Paciente" data-width="100%" data-size="7">
+								</select>
+							</div>
 						</div>
 						<div class="col-md-3 mb-3">
 						  <label>Fecha de Registro <span class="priority">*<span/></label>
@@ -100,39 +99,30 @@ if($colaborador_id != "" || $colaborador_id != null){
 						  <input type="text" id="edad" name="edad" readonly class="form-control"/>
 						</div>						
 					</div>
-					<div class="form-row">						
+					<div class="form-row">		
 						<div class="col-md-4 mb-3">
-						  <label for="expedoente">Religión</label>
-						  <div class="input-group mb-3">
-							  <select id="religion_id" name="religion_id" class="form-control" data-toggle="tooltip" data-placement="top" title="Religión">
-								<option value="">Seleccione</option>
-							  </select>
-							  <div class="input-group-append" id="buscar_religion_atenciones">				
-								<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-							  </div>
-						   </div>						  
+							<label for="religion_id">Religión <span class="priority">*<span /></label>
+							<div class="input-group mb-3">
+								<select class="selectpicker" id="religion_id" name="religion_id" required data-live-search="true"
+									title="Religión" data-width="100%" data-size="7">
+								</select>
+							</div>
 						</div>
 						<div class="col-md-4 mb-3">
-						  <label for="expedoente">Estado Civil</label>
-						  <div class="input-group mb-3">
-							  <select id="estado_civil" name="estado_civil" class="form-control" data-toggle="tooltip" data-placement="top" title="Estado Civil">
-								<option value="">Seleccione</option>
-							  </select>
-							  <div class="input-group-append" id="buscar_religion_atenciones">				
-								<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-							  </div>
-						   </div>						  
-						</div>						
+							<label for="estado_civil">Estado Civil <span class="priority">*<span /></label>
+							<div class="input-group mb-3">
+								<select class="selectpicker" id="estado_civil" name="estado_civil" required data-live-search="true"
+									title="Estado Civil" data-width="100%" data-size="7">
+								</select>
+							</div>
+						</div>
 						<div class="col-md-4 mb-3">
-						  <label>Profesión</label>
-						  <div class="input-group mb-3">
-							  <select id="profesion_id" name="profesion_id" class="form-control" data-toggle="tooltip" data-placement="top" title="Profesión" >
-									<option value="">Seleccione</option>
-							  </select>
-							  <div class="input-group-append" id="buscar_profesion_atenciones">				
-								<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-							  </div>
-						   </div>
+							<label for="profesion_id">Profesión <span class="priority">*<span /></label>
+							<div class="input-group mb-3">
+								<select class="selectpicker" id="profesion_id" name="profesion_id" required data-live-search="true"
+									title="Profesión" data-width="100%" data-size="7">
+								</select>
+							</div>
 						</div>						
 					</div>	
 
@@ -140,18 +130,15 @@ if($colaborador_id != "" || $colaborador_id != null){
 						<div class="col-md-4 mb-3">
 						  <label for="expedoente">Número de Hijos</label>
 						  <input type="number" name="num_hijos" id="num_hijos" value="0" class="form-control"/>
-						</div>						
+						</div>		
 						<div class="col-md-8 mb-3">
-						  <label for="expedoente">Consultorio</label>
-						  <div class="input-group mb-3">
-							  <select id="servicio_id" name="servicio_id" class="form-control" data-toggle="tooltip" data-placement="top" title="Pacientes">
-									<option value="">Seleccione</option>							  
-							  </select>
-							  <div class="input-group-append" id="buscar_servicios_atenciones">				
-								<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-							  </div>
-						   </div>
-						</div>							
+							<label for="servicio_id">Servicio <span class="priority">*<span /></label>
+							<div class="input-group mb-3">
+								<select class="selectpicker" id="servicio_id" name="servicio_id" required data-live-search="true"
+									title="Servicio" data-width="100%" data-size="7">
+								</select>
+							</div>
+						</div>						
 					</div>	
 					
 					<div class="form-row">
@@ -364,14 +351,11 @@ if($colaborador_id != "" || $colaborador_id != null){
 				</div>
 				<div class="form-row">
 					<div class="col-md-6 mb-3">
-						<label for="expedoente">Paciente <span class="priority">*<span/></label>
+						<label for="paciente_te">Paciente: <span class="priority">*<span /></label>
 						<div class="input-group mb-3">
-						  <select id="paciente_te" name="paciente_te" class="form-control" data-toggle="tooltip" data-placement="top" title="Paciente" required >
-								<option value="">Seleccione</option>						  
-						  </select>
-						  <div class="input-group-append" id="buscar_pacientes_te">				
-							<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-						  </div>
+							<select class="selectpicker" id="paciente_te" name="paciente_te" required data-live-search="true"
+								title="Paciente" data-width="100%" data-size="7">
+							</select>
 						</div>
 					</div>
 					<div class="col-md-6 mb-3">
@@ -385,16 +369,14 @@ if($colaborador_id != "" || $colaborador_id != null){
 					  <input type="text" name="identidad" id="identidad" placeholder="Identidad" readonly class="form-control"/>
 					</div>
 					<div class="col-md-6 mb-3">
-					  <label for="apellido">Enviada a <span class="priority">*<span/></label>
+						<label for="enviada">Enviada a: <span class="priority">*<span /></label>
 						<div class="input-group mb-3">
-						  <select id="enviada" name="enviada" class="form-control" data-toggle="tooltip" data-placement="top" title="Enviada a" required >
-							  <option value="">Seleccione</option>								
-						  </select>
-						  <div class="input-group-append" id="buscar_colaboradores_te">				
-							<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-						  </div>
-						</div>					  
-					</div>				
+							<select class="selectpicker" id="enviada" name="enviada" required data-live-search="true"
+								title="Enviada" data-width="100%" data-size="7">
+							</select>
+						</div>
+					</div>
+			
 				</div>						
 				<div class="form-row">			  
 					<div class="col-md-12 mb-3">
@@ -439,14 +421,11 @@ if($colaborador_id != "" || $colaborador_id != null){
 				</div>	
 				<div class="form-row">
 					<div class="col-md-6 mb-3">
-						<label for="expedoente">Paciente <span class="priority">*<span/></label>
+						<label for="paciente_tr">Paciente: <span class="priority">*<span /></label>
 						<div class="input-group mb-3">
-						  <select id="paciente_tr" name="paciente_tr" class="form-control" data-toggle="tooltip" data-placement="top" title="Paciente" required >
-								<option value="">Seleccione</option>							  
-						  </select>
-						  <div class="input-group-append" id="buscar_pacientes_tr">				
-							<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-						  </div>
+							<select class="selectpicker" id="paciente_tr" name="paciente_tr" required data-live-search="true"
+								title="Paciente" data-width="100%" data-size="7">
+							</select>
 						</div>
 					</div>
 					<div class="col-md-6 mb-3">
@@ -460,15 +439,12 @@ if($colaborador_id != "" || $colaborador_id != null){
 					  <input type="text" name="identidad" id="identidad" placeholder="Identidad" readonly class="form-control"/>
 					</div>
 					<div class="col-md-6 mb-3">
-					  <label for="apellido">Recibida de <span class="priority">*<span/></label>
+						<label for="recibida">Recibida de: <span class="priority">*<span /></label>
 						<div class="input-group mb-3">
-						  <select id="recibida" name="recibida" class="form-control" data-toggle="tooltip" data-placement="top" title="Recibida de" required >
-								<option value="">Seleccione</option>							  
-						  </select>
-						  <div class="input-group-append" id="buscar_colaboradores_tr">				
-							<a data-toggle="modal" href="#" class="btn btn-outline-success"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-						  </div>
-						</div>					  
+							<select class="selectpicker" id="recibida" name="recibida" required data-live-search="true"
+								title="Recibida de" data-width="100%" data-size="7">
+							</select>
+						</div>
 					</div>				
 				</div>						
 				<div class="form-row">			  
@@ -504,16 +480,15 @@ if($colaborador_id != "" || $colaborador_id != null){
 	
 	<div id="main_facturacion">
     <form class="form-inline" id="form_main">
-	  <div class="form-group mr-1">
-		<div class="input-group">				
-			<div class="input-group-append">				
-				<span class="input-group-text"><div class="sb-nav-link-icon"></div>Estado</span>
+		<div class="form-group mx-sm-3 mb-1">
+			<div class="input-group">				
+				<div class="input-group-append">				
+					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Atención</span>
+				</div>
+				<select id="estado" name="estado" class="selectpicker" title="Atención" data-live-search="true" data-size="7">
+				</select>
 			</div>
-			 <select id="estado" name="estado" class="form-control" style="width:125px;" data-toggle="tooltip" data-placement="top" title="Atención">   				   		 
-				 <option value="">Seleccione</option>	         
-			 </select>	
-		</div>	   
-      </div>	  
+		</div>	  
       <div class="form-group mr-1">
 		<div class="input-group">				
 			<div class="input-group-append">				

@@ -103,9 +103,12 @@
 					  <input type="date" name="fecha_citaedit" class="form-control" id="fecha_citaedit" data-toggle="tooltip" data-placement="top" title="Año-Mes-Dia   Hora:Minutos:Segundos">
 					</div>
 					<div class="col-md-4 mb-3">
-					  <label for="apellido_proveedores">Hora</label>
-					  <select id="hora_nueva" name="hora_nueva" class="form-control" required="required">
-					  </select>
+						<label for="hora_nueva">Hora: <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="hora_nueva" name="hora_nueva" required data-live-search="true"
+								title="Hora" data-width="100%" data-size="7">
+							</select>
+						</div>
 					</div>
 					<div class="col-md-4 mb-3">
 					  <label for="rtn_proveedores">Fecha Cita Inicio</label>
@@ -136,13 +139,12 @@
 				</div>
 				<div class="form-row">
 					<div class="col-md-4 mb-3">
-					  <label for="apellido_proveedores">Profesional</label>
-					  <div class="input-group mb-3">
-							  <select id="colaborador" name="colaborador" class="form-control" data-toggle="tooltip" data-placement="top" title="Profesional" required ></select>
-							  <div class="input-group-append" id="buscar_profesional">				
-								<a data-toggle="modal" href="#" class="btn btn-outline-success" id="servicio_boton"><div class="sb-nav-link-icon"></div><i class="fas fa-search fa-lg"></i></a>
-							  </div>
-						   </div>						  
+						<label for="colaborador">Profesional: <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="colaborador" name="colaborador" required data-live-search="true"
+								title="Profesional" data-width="100%" data-size="7">
+							</select>
+						</div>
 					</div>
 					<div class="col-md-8 mb-3">
 					  <label for="rtn_proveedores">Observación</label>
@@ -206,9 +208,12 @@
 				</div>
 				<div class="form-row">
 					<div class="col-md-4 mb-3">
-					  <label for="nombre_proveedores">Profesional</label>
-					   <select id="medico_ausencia" name="medico_ausencia" class="form-control" data-toggle="tooltip" data-placement="top" title="Seleccione">		   
-					   </select>
+						<label for="medico_ausencia">Profesional: <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="medico_ausencia" name="medico_ausencia" required data-live-search="true"
+								title="Referido por" data-width="100%" data-size="7">
+							</select>
+						</div>
 					</div>
 					<div class="col-md-8 mb-3">
 					  <label for="apellido_proveedores">Comentario</label>

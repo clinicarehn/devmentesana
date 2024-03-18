@@ -223,6 +223,7 @@ function getServicioFormMain(){
         success: function(data){	
 		    $('#form_main #servicio').html("");
 			$('#form_main #servicio').html(data);
+			$('#form_main #servicio').selectpicker('refresh');
 		}			
      });		
 }
@@ -239,7 +240,8 @@ $(document).ready(function() {
             data:'servicio='+servicio_id,
             success: function(data){
 				$('#form_main #unidad').html("");
-				$('#form_main #unidad').html(data);				
+				$('#form_main #unidad').html(data);	
+				$('#form_main #unidad').selectpicker('refresh');			
             }
          });
 		 
@@ -254,7 +256,8 @@ function getProfesionales(){
         url: url,
         success: function(data){
 		    $('#form_main #colaborador').html("");
-			$('#form_main #colaborador').html(data);			
+			$('#form_main #colaborador').html(data);
+			$('#form_main #colaborador').selectpicker('refresh');			
 		}			
      });	
 }	
@@ -282,7 +285,8 @@ function getServicio(){
 	    async: true,
         success: function(data){
 		    $('#formulario_agregar_preclinica #servicio').html("");
-			$('#formulario_agregar_preclinica #servicio').html(data);					
+			$('#formulario_agregar_preclinica #servicio').html(data);	
+			$('#formulario_agregar_preclinica #servicio').selectpicker('refresh');				
         }
      });		
 }
@@ -645,94 +649,9 @@ function getColaborador(){
 	    async: true,
         success: function(data){
 		    $('#formulario_agregar_preclinica #medico').html("");
-			$('#formulario_agregar_preclinica #medico').html(data);		
+			$('#formulario_agregar_preclinica #medico').html(data);	
+			$('#formulario_agregar_preclinica #medico').selectpicker('refresh');	
         }
      });		
-}
-
-$('#formulario_agregar_preclinica #buscar_servicios_preclinica').on('click', function(e){
-	listar_servicios_preclinica_buscar();
-	 $('#modal_busqueda_servicios').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});	 
-});
-
-$('#formulario_agregar_preclinica #buscar_profesionales_preclinica').on('click', function(e){
-	listar_colaboradores_preclinica_buscar();
-	 $('#modal_busqueda_colaboradores').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});	 
-});
-
-var listar_colaboradores_preclinica_buscar = function(){
-	var table_colaboradores_preclinica_buscar = $("#dataTableColaboradores").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/citas/getMedicoTable.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"colaborador"},
-			{"data":"identidad"},
-			{"data":"puesto"}			
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_colaboradores_preclinica_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_colaboradores_preclinica_busqueda_dataTable("#dataTableColaboradores tbody", table_colaboradores_preclinica_buscar);
-}
-
-var view_colaboradores_preclinica_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();	
-		$('#formulario_agregar_preclinica #medico').val(data.colaborador_id);
-		$('#modal_busqueda_colaboradores').modal('hide');
-	});
-}
-
-var listar_servicios_preclinica_buscar = function(){
-	var table_servicios_preclinica_buscar = $("#dataTableServicios").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/citas/getServiciosTable.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"}		
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_servicios_preclinica_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_servicios_preclinica_busqueda_dataTable("#dataTableServicios tbody", table_servicios_preclinica_buscar);
-}
-
-var view_servicios_preclinica_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();
-		$('#formulario_agregar_preclinica #servicio').val(data.servicio_id);
-		$('#modal_busqueda_servicios').modal('hide');
-	});
 }
 </script>

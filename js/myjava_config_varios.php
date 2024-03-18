@@ -196,7 +196,8 @@ function editarRegistro(id,entidad){
 				$('#edi').show();
 				$('#formulario_registros #pro').val('Edicion');
 				$('#formulario_registros #id_registro').val(id);
-                $('#formulario_registros #consulta_registro').val(datos[0]);				
+                $('#formulario_registros #consulta_registro').val(datos[0]);
+				$('#formulario_registros #consulta_registro').selectpicker('refresh');				
 				$('#formulario_registros #nombre_registro').val(datos[1]);				
 				
 				$('#formulario_registros').attr({ 'data-form': 'update' }); 

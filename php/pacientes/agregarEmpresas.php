@@ -6,29 +6,24 @@ include "../funtions.php";
 $mysqli = connect_mysqli();
 
 $expediente = 0;
-$nombre = cleanStringStrtolower($_POST['name']);
-$apellido = cleanStringStrtolower($_POST['lastname']);
-$sexo = $_POST['sexo'];
+$nombre = cleanStringStrtolower($_POST['empresa']);
+$identidad = $_POST['rtn'];
 $telefono1 = $_POST['telefono1'];
 $telefono2 = $_POST['telefono2'];
-$fecha_nacimiento = $_POST['fecha_nac'];
-$correo = strtolower(cleanString($_POST['correo']));
-$fecha = date("Y-m-d");
+$pais_id = $_POST['pais_id'] ?? 0;
 $departamento_id = $_POST['departamento_id'] ?? 0;
 $municipio_id = $_POST['municipio_id'] ?? 0;
-$pais_id = $_POST['pais_id'] ?? 0;
-$responsable = $_POST['responsable'];
-$responsable_id = $_POST['responsable_id'] ?? 0;
-$referido_id = $_POST['referido_id'] ?? 0;
 $localidad = cleanStringStrtolower($_POST['direccion']);
-$profesional = cleanStringStrtolower($_POST['profesional'] ?? "");
-$religion_id = 0;
-$profesion_id = 0;
-$identidad = $_POST['identidad'];
-$estado_civil = 0;
+$correo = strtolower(cleanString($_POST['correo']));
+$referido_id = $_POST['referido_id'] ?? 0;
+$responsable_id = $_POST['responsable_id'] ?? 0;
+$profesional = cleanStringStrtolower($_POST['profesional'] ?? 0);
+$fecha = date("Y-m-d");
 $usuario = $_SESSION['colaborador_id'];
 $estado = 1; //1. Activo 2. Inactivo
 $fecha_registro = date("Y-m-d H:i:s");
+$apellido = "";
+$genero = "";
 
 //CONSULTAR IDENTIDAD DEL USUARIO
 if($identidad == 0){
@@ -51,43 +46,70 @@ if($identidad == 0){
 //EVALUAR SI EXISTE EL PACIENTE
 $select = "SELECT pacientes_id
 	FROM pacientes
-	WHERE identidad = '$identidad' AND nombre = '$nombre' AND apellido = '$apellido' AND telefono1 = '$telefono1'";
+	WHERE identidad = '$identidad' AND nombre = '$nombre'";
 $result = $mysqli->query($select) or die($mysqli->error);
 
 if($result->num_rows==0){
 	$pacientes_id = correlativo('pacientes_id ', 'pacientes');
-	$insert = "INSERT INTO pacientes 
-	(`pacientes_id`, `expediente`, `identidad`, `nombre`, `apellido`, `genero`, `telefono1`, `telefono2`, `fecha_nacimiento`, `email`, `fecha`, `pais_id`, `departamento_id`, `municipio_id`, `localidad`, `religion_id`, `profesion_id`, `estado_civil`, `responsable`, `responsable_id`, `usuario`, `estado`, `fecha_registro`, `referido_id`, `profesional`) 
-	VALUES 
-	(
-		'{$pacientes_id}', 
-		'{$expediente}', 
-		'{$identidad}', 
-		'{$nombre}', 
-		'{$apellido}', 
-		'{$sexo}', 
-		'{$telefono1}', 
-		'{$telefono2}', 
-		'{$fecha_nacimiento}', 
-		'{$correo}', 
-		'{$fecha}', 
-		'{$pais_id}', 
-		'{$departamento_id}', 
-		'{$municipio_id}', 
-		'{$localidad}', 
-		'{$religion_id}', 
-		'{$profesion_id}', 
-		'{$estado_civil}', 
-		'{$responsable}', 
-		'{$responsable_id}', 
-		'{$usuario}', 
-		'{$estado}', 
-		'{$fecha_registro}', 
-		'{$referido_id}', 
-		'{$profesional}'
-	)";	
+	$expediente = correlativo('expediente ', 'pacientes');
+
+	$insert = "INSERT INTO pacientes (
+		pacientes_id,
+		expediente,
+		nombre, 
+		apellido,
+		genero,
+		fecha_nacimiento,
+		identidad,
+		telefono1, 
+		telefono2, 
+		pais_id, 
+		departamento_id, 
+		municipio_id, 
+		localidad, 
+		email, 
+		referido_id, 
+		responsable_id, 
+		profesional, 
+		fecha, 
+		usuario, 
+		estado, 
+		fecha_registro,
+		religion_id,
+		profesion_id,
+		estado_civil,
+		responsable
+	)
+	VALUES (
+		$pacientes_id,
+		$expediente, 
+		'$nombre',
+		'$apellido', 
+		'$genero',
+		'$fecha',
+		'$identidad', 
+		'$telefono1', 
+		'$telefono2', 
+		$pais_id, 
+		$departamento_id, 
+		$municipio_id, 
+		'$localidad', 
+		'$correo', 
+		$referido_id, 
+		$responsable_id, 
+		'$profesional', 
+		'$fecha', 
+		$usuario, 
+		$estado, 
+		'$fecha_registro',
+		'0', -- campo religion_id asignado como vacío
+		'0', -- campo profesion_id asignado como vacío
+		'0', -- campo estado_civil asignado como vacío
+		''  -- campo responsable asignado como vacío
+	)";
 
 	$query = $mysqli->query($insert);
+
 	if($query){
 		$datos = array(
 			0 => "Almacenado", 

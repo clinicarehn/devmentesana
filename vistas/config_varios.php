@@ -86,11 +86,14 @@ $mysqli->close();//CERRAR CONEXIÓN
 						</div>
 					</div>
 				</div>
-				<div class="form-row" id="grupo_expediente">
-					<div class="col-md-6 mb-3">
-					  <label for="expedoente">Registro</label>
-		              <select id="consulta_registro" name="consulta_registro" class="form-control"  data-toggle="tooltip" data-placement="top" title="Registro">
-                    </select>
+				<div class="form-row">
+          <div class="col-md-6 mb-3">
+						<label for="consulta_registro">Registro <span class="priority">*<span /></label>
+						<div class="input-group mb-3">
+							<select class="selectpicker" id="consulta_registro" name="consulta_registro" required data-live-search="true"
+								title="Registro" data-width="100%" data-size="5">
+							</select>
+						</div>
 					</div>
 					<div class="col-md-6 mb-3">
 					  <label for="edad">Nombre</label>
@@ -98,6 +101,7 @@ $mysqli->close();//CERRAR CONEXIÓN
 					</div>
 				</div>
 			</form>
+      <br/><br/><br/><br/><br/>
         </div>
 		<div class="modal-footer">
 			<button class="btn btn-primary ml-2" form="formulario_registros" type="submit" id="reg"><div class="sb-nav-link-icon"></div><i class="far fa-save fa-lg"></i> Registrar</button>
