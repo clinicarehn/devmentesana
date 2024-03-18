@@ -77,6 +77,7 @@ function pay(facturas_id){
 				$('#formulario_facturacion #colaborador_id').val(datos[3]);
 				$('#formulario_facturacion #colaborador_nombre').val(datos[4]);
 				$('#formulario_facturacion #servicio_id').val(datos[5]);
+				$('#formulario_facturacion #servicio_id').selectpicker('refresh');
 				$('#formulario_facturacion #notes').val(datos[6]);
 
 				$('#formulario_facturacion #fecha').attr("readonly", true);
@@ -164,7 +165,6 @@ function funciones(){
 	getBanco();
 	listar_pacientes_buscar();
 	listar_colaboradores_buscar();
-	listar_servicios_factura_buscar();
 	listar_productos_facturas_buscar();
 }
 //FIN FUNCION PARA OBTENER LAS FUNCIONES

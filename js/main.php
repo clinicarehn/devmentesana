@@ -61,18 +61,6 @@ $('#formulario_facturacion #buscar_paciente').on('click', function(e){
 });
 //FIN BUSQUEDA PACIENTES
 
-//INICIO BUSQUEDA SERVICIOS
-$('#formulario_facturacion #buscar_servicios').on('click', function(e){
-	e.preventDefault();
-	listar_servicios_factura_buscar();
-	$('#modal_busqueda_servicios').modal({
-		show:true,
-		keyboard: false,
-		backdrop:'static'
-	});		 
-});
-//FIN BUSQUEDA SERVICIOS
-
 //INICIO BUSQUEDA PRODUCTOS FACTURA
 $(document).ready(function(){
     $("#formulario_facturacion #invoiceItem").on('click', '.buscar_producto', function() {
@@ -198,39 +186,6 @@ var view_pacientes_busqueda_dataTable = function(tbody, table){
 	});
 }
 
-var listar_servicios_factura_buscar = function(){
-	var table_servicios_factura_buscar = $("#dataTableServicios").DataTable({		
-		"destroy":true,	
-		"ajax":{
-			"method":"POST",
-			"url":"<?php echo SERVERURL; ?>php/facturacion/getServiciosTabla.php"
-		},
-		"columns":[
-			{"defaultContent":"<button class='view btn btn-primary'><span class='fas fa-copy'></span></button>"},
-			{"data":"nombre"},		
-		],
-		"pageLength" : 5,
-        "lengthMenu": lengthMenu,
-		"stateSave": true,
-		"bDestroy": true,
-		"language": idioma_español,	
-	});	 
-	table_servicios_factura_buscar.search('').draw();
-	$('#buscar').focus();
-	
-	view_servicios_busqueda_dataTable("#dataTableServicios tbody", table_servicios_factura_buscar);
-}
-
-var view_servicios_busqueda_dataTable = function(tbody, table){
-	$(tbody).off("click", "button.view");		
-	$(tbody).on("click", "button.view", function(e){
-		e.preventDefault();
-		var data = table.row( $(this).parents("tr") ).data();		  
-		$('#formulario_facturacion #servicio_id').val(data.servicio_id);
-		$('#modal_busqueda_servicios').modal('hide');
-	});
-}
-
 var listar_productos_facturas_buscar = function(){
 	var table_productos_buscar = $("#dataTableProductosFacturas").DataTable({		
 		"destroy":true,	
@@ -326,7 +281,8 @@ function getServicio(){
 	    async: true,
         success: function(data){	
 		    $('#formulario_facturacion #servicio_id').html("");
-			$('#formulario_facturacion #servicio_id').html(data);			
+			$('#formulario_facturacion #servicio_id').html(data);
+			$('#formulario_facturacion #servicio_id').selectpicker('refresh');		
 		}			
      });	
 }
