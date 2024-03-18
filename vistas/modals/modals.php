@@ -367,17 +367,17 @@
 
 				<div class="form-row" id="grupo">
 					<div class="col-md-4 mb-3">
-						<label for="servicio">Consultorio: <span class="priority">*<span /></label>
+						<label for="servicio">Consultorio: </label>
 						<div class="input-group mb-3">
-							<select class="selectpicker" id="servicio" name="servicio" required data-live-search="true"
+							<select class="selectpicker" id="servicio" name="servicio" data-live-search="true"
 								title="Consultorio" data-width="100%" data-size="7">
 							</select>
 						</div>
 					</div>
 					<div class="col-md-4 mb-3">
-						<label for="medico">Profesional: <span class="priority">*<span /></label>
+						<label for="medico">Profesional: </label>
 						<div class="input-group mb-3">
-							<select class="selectpicker" id="medico" name="medico" required data-live-search="true"
+							<select class="selectpicker" id="medico" name="medico" data-live-search="true"
 								title="Profesional" data-width="100%" data-size="7">
 							</select>
 						</div>
