@@ -181,7 +181,7 @@ $mysqli->close();//CERRAR CONEXIÓN
 						<label for="referido_id">Referido por: <span class="priority">*<span /></label>
 						<div class="input-group mb-3">
 							<select class="selectpicker" id="referido_id" name="referido_id" required data-live-search="true"
-								title="País" data-width="100%" data-size="7">
+								title="Referido por" data-width="100%" data-size="7">
 							</select>
 						</div>
 					</div>

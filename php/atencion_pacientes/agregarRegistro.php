@@ -5,7 +5,6 @@ include "../funtions.php";
 //CONEXION A DB
 $mysqli = connect_mysqli(); 
 
-
 $agenda_id = $_POST['agenda_id'];
 $pacientes_id = $_POST['pacientes_id'];
 $fecha = $_POST['fecha'];
@@ -23,36 +22,10 @@ $fecha_cita_end =  date("Y-m-d H:i:s", strtotime($fecha));
 $fecha_registro = date("Y-m-d H:i:s");
 $status = 1;//ESTADO PARA LA AGENDA DEL PACIENTE
 $estado = 1;//ESTADO DE LA ATENCION DEL PACIENTE PARA LA FACTURACION 1. PENDIENTE 2. PAGADA
+$religion_id = $_POST['religion_id'] ?? 0;
+$profesion_id = $_POST['profesion_id'] ?? 0;
+$estado_civil = $_POST['estado_civil'] ?? 0;
 
-if(isset($_POST['religion_id'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
-	if($_POST['religion_id'] == ""){
-		$religion_id = 0;
-	}else{
-		$religion_id = $_POST['religion_id'];
-	}
-}else{
-	$religion_id = 0;
-}
-
-if(isset($_POST['profesion_id'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
-	if($_POST['profesion_id'] == ""){
-		$profesion_id = 0;
-	}else{
-		$profesion_id = $_POST['profesion_id'];
-	}
-}else{
-	$profesion_id = 0;
-}
-
-if(isset($_POST['estado_civil'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
-	if($_POST['estado_civil'] == ""){
-		$estado_civil = 0;
-	}else{
-		$estado_civil = $_POST['estado_civil'];
-	}
-}else{
-	$estado_civil = 0;
-}
 //CONSULTAR SERVICIO_ID
 $query_servicio = "SELECT servicio_id
 	FROM agenda
@@ -115,14 +88,15 @@ if($result_tipo_paciente->num_rows==0){
 $query = "SELECT CONCAT(nombre, ' ', apellido) AS 'paciente', identidad, expediente AS 'expediente'
 	FROM pacientes
 	WHERE pacientes_id = '$pacientes_id'";
-$result = $mysqli->query($query) or die($mysqli->error);
-$consulta_registro = $result->fetch_assoc();
+$result_consulta_expediente = $mysqli->query($query) or die($mysqli->error);
 
 $paciente = '';
 $identidad = '';
-$expediente = '';
+$expediente = 0;
 
-if($result->num_rows>1){
+if($result_consulta_expediente->num_rows>0){
+	$consulta_registro = $result_consulta_expediente->fetch_assoc();
+
 	$paciente = $consulta_registro['paciente'];
 	$identidad = $consulta_registro['identidad'];
 	$expediente = $consulta_registro['expediente'];
@@ -142,6 +116,7 @@ if($historia_clinica != "" && $exame_fisico != "" && $diagnostico != "" && $segu
 		if($servicio_id != 0){
 			if($result_existencia->num_rows < 3){		
 				$insert = "INSERT INTO atenciones_medicas VALUES('$correlativo','$pacientes_id','$anos','$fecha','$antecedentes','$historia_clinica','$exame_fisico','$diagnostico','$seguimiento','$tipo_paciente','$servicio_id','$colaborador_id','$num_hijos','$estado','$fecha_registro')";
+
 				$query = $mysqli->query($insert) or die($mysqli->error);
 
 				if($query){
@@ -169,7 +144,8 @@ if($historia_clinica != "" && $exame_fisico != "" && $diagnostico != "" && $segu
 					$observacion_historial = "Se ha agregado una nueva atención para este paciente: $paciente con identidad n° $identidad";
 					$modulo = "Atención Pacientes";
 					$insert = "INSERT INTO historial 
-					   VALUES('$historial_numero','$pacientes_id','$expediente','$modulo','$correlativo','$colaborador_id','$servicio_id','$fecha','$estado_historial','$observacion_historial','$colaborador_id','$fecha_registro')";	 
+   					VALUES('$historial_numero','$pacientes_id','$expediente','$modulo','$correlativo','$colaborador_id','$servicio_id','$fecha','$estado_historial','$observacion_historial','$colaborador_id','$fecha_registro')";	 
+
 					$mysqli->query($insert) or die($mysqli->error);
 					/********************************************/
 				}else{

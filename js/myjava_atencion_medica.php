@@ -254,8 +254,11 @@ function editarRegistro(pacientes_id, agenda_id){
 					$('#formulario_atenciones #edad').val(array[2]);		
 					$('#formulario_atenciones #procedencia').val(array[3]);
 					$('#formulario_atenciones #religion_id').val(array[4]);
+					$('#formulario_atenciones #religion_id').selectpicker('refresh');
 					$('#formulario_atenciones #profesion_id').val(array[5]);
+					$('#formulario_atenciones #profesion_id').selectpicker('refresh');
 					$('#formulario_atenciones #paciente_consulta').val(array[6]);
+					$('#formulario_atenciones #paciente_consulta').selectpicker('refresh');
 					$('#formulario_atenciones #fecha').val(array[7]);
 					$('#formulario_atenciones #fecha_nac').val(array[8]);
 					$('#formulario_atenciones #antecedentes').val(array[9]);
@@ -263,8 +266,10 @@ function editarRegistro(pacientes_id, agenda_id){
 					$('#formulario_atenciones #exame_fisico').val(array[11]);
 					$('#formulario_atenciones #diagnostico').val(array[12]);					
 					$('#formulario_atenciones #seguimiento_read').val(array[13]);
-					$('#formulario_atenciones #servicio_id').val(array[14]);					
+					$('#formulario_atenciones #servicio_id').val(array[14]);
+					$('#formulario_atenciones #servicio_id').selectpicker('refresh');					
 					$('#formulario_atenciones #estado_civil').val(array[15]);
+					$('#formulario_atenciones #estado_civil').selectpicker('refresh');
 					$('#formulario_atenciones #num_hijos').val(array[16]);
 					$("#formulario_atenciones #fecha").attr('readonly', true);
 					$("#edi_atencion").attr('disabled', false);	
@@ -597,7 +602,9 @@ $(document).ready(function(e){
 				$('#formulario_atenciones #edad').val(array[2]);
 				$('#formulario_atenciones #procedencia').val(array[3]);
 				$('#formulario_atenciones #religion_id').val(array[4]);
+				$('#formulario_atenciones #religion_id').selectpicker('refresh');
 				$('#formulario_atenciones #profesion_id').val(array[5]);
+				$('#formulario_atenciones #profesion_id').selectpicker('refresh');
 				$('#formulario_atenciones #paciente_consulta').val(array[6]);
 				$('#formulario_atenciones #antecedentes').val(array[7]);
 				$('#formulario_atenciones #historia_clinica').val(array[8]);
