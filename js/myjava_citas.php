@@ -46,33 +46,33 @@ $(document).ready(function() {
 		  if(getFechaAusencias(moment(start).format('YYYY-MM-DD HH:mm:ss'), $('#botones_citas #medico_general').val()) == 2){
 			if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
                  $("#ModalAdd_enviar").attr('disabled', false);			   				
-			     if ($('#medico_general').val()!="" && $('#servicio').val()!=""){
+			     if ($('#botones_citas #medico_general').val()!="" && $('#botones_citas #servicio').val()!=""){
 				     $('#form-addevent')[0].reset();	
-			         if (moment(start).format('YYYY-MM-DD HH:mm:ss') >= fecha_actual){
-					    $('#ModalAdd #fecha_cita').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
-			            $('#ModalAdd #fecha_cita_end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-			            $('#ModalAdd #medico').val($('#botones_citas #medico_general').val());
-						$('#ModalAdd #unidad').val($('#botones_citas #unidad').val());
-					    $('#ModalAdd #serv').val($('#botones_citas #servicio').val()); 
-						$('#form-addevent #profesional_citas').val(getProfesionalName($('#botones_citas #medico_general').val()));
-			
-		                $('#ModalAdd').modal({
-							show:true,
-							keyboard: false,
-							backdrop:'static'
-		                });
-                        $('#mensaje_ModalAdd').removeClass('error');					  
-					    $('#mensaje_ModalAdd').removeClass('bien');
-					    $('#mensaje_ModalAdd').hide();
-					    $('#mensaje_ModalAdd').html("");
-			         }else{				  	    	
-						swal({
-							title: "Error", 
-							text: "No se puede agregar una cita en esta fecha",
-							type: "error", 
-							confirmButtonClass: 'btn-danger'
-						});								
-			         }										
+						if (moment(start).format('YYYY-MM-DD HH:mm:ss') >= fecha_actual){
+							$('#ModalAdd #fecha_cita').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+							$('#ModalAdd #fecha_cita_end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+							$('#ModalAdd #medico').val($('#botones_citas #medico_general').val());
+							$('#ModalAdd #unidad').val($('#botones_citas #unidad').val());
+							$('#ModalAdd #serv').val($('#botones_citas #servicio').val()); 
+							$('#form-addevent #profesional_citas').val(getProfesionalName($('#botones_citas #medico_general').val()));
+				
+							$('#ModalAdd').modal({
+								show:true,
+								keyboard: false,
+								backdrop:'static'
+							});
+							$('#mensaje_ModalAdd').removeClass('error');					  
+							$('#mensaje_ModalAdd').removeClass('bien');
+							$('#mensaje_ModalAdd').hide();
+							$('#mensaje_ModalAdd').html("");
+						}else{				  	    	
+							swal({
+								title: "Error", 
+								text: "No se puede agregar una cita en esta fecha",
+								type: "error", 
+								confirmButtonClass: 'btn-danger'
+							});								
+						}										
 			         }else{
 						swal({
 							title: "Error", 
