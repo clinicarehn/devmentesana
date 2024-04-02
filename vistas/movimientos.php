@@ -98,6 +98,15 @@ $mysqli->close();//CERRAR CONEXIÓN
         </div>
         <div class="form-group mr-1">
           <div class="input-group">
+            <div class="input-group-append">
+              <span class="input-group-text"><div class="sb-nav-link-icon"></div>Producto</span>
+            </div>
+            <select id="productos_id" name="productos_id" class="selectpicker" title="Producto" data-live-search="true">
+            </select>
+          </div>
+        </div>        
+        <div class="form-group mr-1">
+          <div class="input-group">
     				<div class="input-group-append">
     					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Inicio</span>
     				</div>
@@ -107,7 +116,7 @@ $mysqli->close();//CERRAR CONEXIÓN
         <div class="form-group mr-1">
           <div class="input-group">
     				<div class="input-group-append">
-    					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Inicio</span>
+    					<span class="input-group-text"><div class="sb-nav-link-icon"></div>Fin</span>
     				</div>
     				<input type="date" required id="fechaf" name="fechaf" value="<?php echo date ("Y-m-d");?>" class="form-control" data-toggle="tooltip" data-placement="top" title="Fecha Fin">
     			</div>
@@ -144,6 +153,7 @@ $mysqli->close();//CERRAR CONEXIÓN
               <thead>
                 <tr>
                   <th>Fecha</th>
+                  <th>Factura</th>
                   <th>Producto</th>
                   <th>Concentración</th>
                   <th>Medida</th>

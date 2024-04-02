@@ -14,6 +14,10 @@ $(document).ready(function() {
 		listar_movimientos();
 	});
 
+	$('#form_main #productos_id').on('change', function(){
+		listar_movimientos();
+	});	
+
 	$('#form_main #fechai').on('change', function(){
 		listar_movimientos();
 	});
@@ -75,12 +79,19 @@ function agregarMovimientos(){
 
 var listar_movimientos = function(){
 	var categoria;
+	var productos_id;
 
 	if ($('#form_main #categoria_id').val() == "" || $('#form_main #categoria_id').val() == null){
 	  categoria = 1;
 	}else{
 	  categoria = $('#form_main #categoria_id').val();
 	}
+
+	if ($('#form_main #productos_id').val() == "" || $('#form_main #productos_id').val() == null){
+		productos_id = "";
+	}else{
+		productos_id = $('#form_main #productos_id').val();
+	}	
 
 	var fechai = $("#form_main #fechai").val();
 	var fechaf = $("#form_main #fechaf").val();
@@ -92,19 +103,21 @@ var listar_movimientos = function(){
 			"url":"<?php echo SERVERURL; ?>php/movimientos/getMovimientosTabla.php",
 			"data":{
 				"categoria":categoria,
+				"productos_id":productos_id,
 				"fechai":fechai,
 				"fechaf":fechaf
 			}
 		},
 		"columns":[
 			{"data":"fecha_registro"},
+			{"data":"numero"},
 			{"data":"producto"},
 			{"data":"concentracion"},
 			{"data":"medida"},
 			{"data":"entrada"},
 			{"data":"salida"},
 			{"data":"saldo"},
-      {"data":"comentario"}
+      		{"data":"comentario"}
 		],
         "lengthMenu": lengthMenu,
 		"stateSave": true,
@@ -170,6 +183,20 @@ $(document).ready(function() {
 		getProductos(categoria_producto_id);
 	  return false;
     });
+
+
+	$('#form_main #categoria_id').on('change', function(){
+		var categoria_producto_id;
+
+		if ($('#form_main #categoria_id').val() == "" || $('#form_main #categoria_id').val() == null){
+		  categoria_producto_id = 1;
+		}else{
+		  categoria_producto_id = $('#form_main #categoria_id').val();
+		}
+
+		getProductos(categoria_producto_id);
+	  return false;
+    });	
 });
 
 
@@ -184,7 +211,11 @@ function getProductos(categoria_producto_id){
           $('#formularioMovimientos #movimiento_producto').html("");
           $('#formularioMovimientos #movimiento_producto').html(data);
           $('#formularioMovimientos #movimiento_producto').selectpicker('refresh');
-    		}
+
+          $('#form_main #productos_id').html("");
+          $('#form_main #productos_id').html(data);
+          $('#form_main #productos_id').selectpicker('refresh');		  
+    	}
     });
 }
 

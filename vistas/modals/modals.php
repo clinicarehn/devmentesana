@@ -59,29 +59,32 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-row">
-					<div class="col-md-3 mb-3">
+				
+				<div class="form-row">			
+					<div class="col-md-4 mb-3">
 						<label for="categoria">Categoría<span class="priority">*<span/></label>
 						<div class="input-group mb-3">
 							<select class="selectpicker" id="movimiento_categoria" name="movimiento_categoria" required data-live-search="true" title="Categoría" data-size="10">
 							</select>
 						</div>
-					</div>
-					<div class="col-md-3 mb-3">
+					</div>			
+					<div class="col-md-4 mb-3">
 						<label for="categoria">Productos<span class="priority">*<span/></label>
 						<div class="input-group mb-3">
 							<select class="selectpicker" id="movimiento_producto" name="movimiento_producto" required data-live-search="true" title="Productos" data-size="10">
 							</select>
 						</div>
-					</div>
-					<div class="col-md-3 mb-3">
-						<label for="categoria">Tipo Operación<span class="priority">*<span/></label>
+					</div>			
+					<div class="col-md-4 mb-3">
+						<label for="movimiento_operacion">Tipo Operación<span class="priority">*<span/></label>
 						<div class="input-group mb-3">
 							<select class="selectpicker" id="movimiento_operacion" name="movimiento_operacion" required data-live-search="true" title="Tipo Operación" data-size="10">
 							</select>
 						</div>
-					</div>
-					<div class="col-md-3 mb-3">
+					</div>											
+				</div>
+				<div class="form-row">
+					<div class="col-md-4 mb-3">
 						  <label>Cantidad <span class="priority">*<span/></label>
 						  <input type="number" required id="movimiento_cantidad" name="movimiento_cantidad" class="form-control" required>
 						</div>

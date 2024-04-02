@@ -31,4 +31,3 @@ echo json_encode($arreglo);
 
 $result->free();//LIMPIAR RESULTADO
 $mysqli->close();//CERRAR CONEXIÓN
-?>
