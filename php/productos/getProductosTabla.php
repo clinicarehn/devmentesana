@@ -8,19 +8,39 @@ $mysqli = connect_mysqli();
 $estado = $_POST['estado'];
 
 //CONSULTA LOS DATOS DE LA ENTIDAD CORPORACION
-$consulta = "SELECT p.productos_id AS 'productos_id', p.nombre AS 'producto', p.descripcion AS 'descripcion', p.concentracion AS 'concentracion', p.cantidad AS 'cantidad', m.nombre AS 'medida', p.precio_compra AS 'precio_compra', p.precio_venta AS 'precio_venta', a.nombre AS 'almacen', u.nombre AS 'ubicacion', cp.nombre AS 'categoria', cp.categoria_producto_id AS 'categoria_producto_id', (CASE WHEN p.estado = '1' THEN 'Activo' ELSE 'Inactivo' END) AS 'estado', (CASE WHEN p.isv = '1' THEN 'Sí' ELSE 'No' END) AS 'isv'
-FROM productos AS p
-INNER JOIN medida AS m
-ON p.medida_id = m.medida_id
-INNER JOIN almacen AS a
-ON p.almacen_id = a.almacen_id
-INNER JOIN ubicacion AS u
-ON a.ubicacion_id = u.ubicacion_id
-INNER JOIN categoria_producto AS cp
-ON p.categoria_producto_id = cp.categoria_producto_id
-WHERE p.estado = '$estado'
-GROUP BY p.productos_id
-ORDER BY p.nombre ASC";
+$consulta = "SELECT
+	p.productos_id,
+	p.nombre AS 'producto',
+	(COALESCE(mov.entradas, 0) - COALESCE(mov.salidas, 0)) AS 'cantidad',
+	p.concentracion AS 'concentracion',
+	me.nombre AS 'medida',
+	cp.nombre AS 'categoria',
+	a.nombre AS 'almacen',
+	p.precio_compra AS 'precio_compra',
+	p.precio_venta AS 'precio_venta',
+	(CASE WHEN p.isv = '1' THEN 'Sí' ELSE 'No' END) AS 'isv',
+	p.descripcion AS 'descripcion'
+	FROM
+	productos AS p
+	INNER JOIN
+	medida AS me ON p.medida_id = me.medida_id
+	INNER JOIN
+	categoria_producto AS cp ON p.categoria_producto_id = cp.categoria_producto_id
+	INNER JOIN
+	almacen AS a ON p.almacen_id = a.almacen_id
+	LEFT JOIN (
+	SELECT
+		productos_id,
+		SUM(CASE WHEN cantidad_entrada IS NOT NULL THEN cantidad_entrada ELSE 0 END) AS entradas,
+		SUM(CASE WHEN cantidad_salida IS NOT NULL THEN cantidad_salida ELSE 0 END) AS salidas
+	FROM
+		movimientos
+	GROUP BY
+		productos_id
+	) AS mov ON p.productos_id = mov.productos_id
+	WHERE
+	p.estado = $estado;";
+
 $result = $mysqli->query($consulta);	
 
 $arreglo = array();

@@ -767,20 +767,20 @@
 						<select id="almacen" name="almacen" class="form-control" data-toggle="tooltip" data-placement="top" title="Almacén" required>   				   
 						</select> 
 					</div>				
-					<div class="col-md-3 mb-3">
+					<div class="col-md-3 mb-3" style="display: none;">
 					  <label>Cantidad <span class="priority">*<span/></label>
 					  <input type="number" required id="cantidad" name="cantidad" placeholder="Cantidad" class="form-control"/>
 					</div>
 					<div class="col-md-3 mb-3">
 					  <label>Precio de Compra <span class="priority">*<span/></label>
 					  <input type="number" required id="precio_compra" name="precio_compra" step="0.01" placeholder="Precio Compra" class="form-control"/>
-					</div>					
-				</div>	
-				<div class="form-row">
+					</div>			
 					<div class="col-md-3 mb-3">
 					  <label>Precio de Venta <span class="priority">*<span/></label>
 					  <input type="number" required id="precio_venta" name="precio_venta" step="0.01" placeholder="Precio Venta" class="form-control"/>
-					</div>	
+					</div>								
+				</div>	
+				<div class="form-row">
 					<div class="col-md-3 mb-3">
 					  <label>Cantidad Mínima</label>
 					  <input type="number" id="cantidad_minima" name="cantidad_minima" placeholder="Cantidad Mínima" class="form-control"/>

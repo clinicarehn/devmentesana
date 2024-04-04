@@ -8,7 +8,7 @@ $mysqli = connect_mysqli();
 $usuario = $_SESSION['colaborador_id'];
 $nombre = $_POST['nombre'];
 $productos_id = $_POST['productos_id'];
-$cantidad = $_POST['cantidad'];
+$cantidad = 0;
 $precio_compra = $_POST['precio_compra'];
 $precio_venta = $_POST['precio_venta'];
 $cantidad_minima = $_POST['cantidad_minima'];
@@ -40,7 +40,6 @@ if(isset($_POST['producto_isv_factura'])){
 $update = "UPDATE productos
 	SET
 		nombre = '$nombre',
-		cantidad = '$cantidad',
 		precio_compra = '$precio_compra',
 		precio_venta = '$precio_venta',
 		estado = '$estado',
@@ -86,4 +85,3 @@ if($query){
 }
 
 echo json_encode($datos);
-?>

@@ -60,7 +60,7 @@ $mysqli->close();//CERRAR CONEXIÓN
 <div class="container-fluid">
 	<ol class="breadcrumb mt-2 mb-4">
 		<li class="breadcrumb-item"><a class="breadcrumb-link" href="<?php echo SERVERURL; ?>vistas/inicio.php">Dashboard</a></li>
-		<li class="breadcrumb-item active" id="acciones_factura"><span id="label_acciones_factura"></span>Almacén</li>
+		<li class="breadcrumb-item active" id="acciones_factura"><span id="label_acciones_factura"></span>Productos</li>
 	</ol>
 	
     <div class="card mb-4">

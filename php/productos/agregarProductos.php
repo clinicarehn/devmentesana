@@ -7,74 +7,17 @@ $mysqli = connect_mysqli();
 
 $usuario = $_SESSION['colaborador_id'];
 $nombre = cleanStringStrtolower($_POST['nombre']);
-
-if(isset($_POST['categoria'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
-	if($_POST['categoria'] == ""){
-		$categoria = 0;
-	}else{
-		$categoria = $_POST['categoria'];
-	}
-}else{
-	$categoria = 0;
-}
-
-if(isset($_POST['medida'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
-	if($_POST['medida'] == ""){
-		$medida = 0;
-	}else{
-		$medida = $_POST['medida'];
-	}
-}else{
-	$medida = 0;
-}
-
-if(isset($_POST['almacen'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
-	if($_POST['almacen'] == ""){
-		$almacen = 0;
-	}else{
-		$almacen = $_POST['almacen'];
-	}
-}else{
-	$almacen = 0;
-}
-
+$categoria = $_POST['categoria'] ?? 0;
+$medida = $_POST['medida'] ?? 0;
+$almacen = $_POST['almacen'] ?? 0;
 $concentracion = $_POST['concentracion'];
-
-if(isset($_POST['cantidad'])){//COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
-	if($_POST['cantidad'] == ""){
-		$cantidad = 0;
-	}else{
-		$cantidad = $_POST['cantidad'];
-	}
-}else{
-	$cantidad = 0;
-}
-
-$precio_compra = $_POST['precio_compra'] === "" ? 0 : $_POST['precio_compra'];
-$precio_venta = $_POST['precio_venta'] === "" ? 0 : $_POST['precio_venta'];
-$cantidad_minima = $_POST['cantidad_minima'] === "" ? 0 : $_POST['cantidad_minima'];
-$cantidad_maxima = $_POST['cantidad_maxima'] === "" ? 0 : $_POST['cantidad_maxima'];
-
-if(isset($_POST['producto_activo'])){
-	if(isset($_POST['producto_activo'])){
-		$estado = $_POST['producto_activo'];
-	}else{
-		$estado = 2;
-	}	
-}else{
-	$estado = 2;
-}
-
-if(isset($_POST['producto_isv_factura'])){
-	if(isset($_POST['producto_isv_factura'])){
-		$isv = $_POST['producto_isv_factura'];
-	}else{
-		$isv = 2;
-	}	
-}else{
-	$isv = 2;
-}
-
+$cantidad = 0;
+$precio_compra = $_POST['precio_compra'] ?? 0;
+$precio_venta = $_POST['precio_venta'] ?? 0;
+$cantidad_minima = $_POST['cantidad_minima'] ?? 0;
+$cantidad_maxima = $_POST['cantidad_maxima'] ?? 0;
+$estado = $_POST['producto_activo'] ?? 0;
+$isv = $_POST['producto_isv_factura'] ?? 0;
 $descripcion = cleanStringStrtolower($_POST['descripcion']);
 $fecha_registro = date("Y-m-d H:i:s");
 $fecha = date("Y-m-d");
@@ -132,8 +75,6 @@ if($result->num_rows==0){
 				$mysqli->query($insert) or die($mysqli->error);
 			}		
 		}		
-		
-		/*********************************************************************************************************************************************************************/
 		/*********************************************************************************************************************************************************************/
 		//INGRESAR REGISTROS EN LA ENTIDAD HISTORIAL
 		$historial_numero = historial();
@@ -166,4 +107,3 @@ if($result->num_rows==0){
 }
 
 echo json_encode($datos);
-?>
