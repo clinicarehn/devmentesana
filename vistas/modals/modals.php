@@ -769,7 +769,7 @@
 					</div>				
 					<div class="col-md-3 mb-3" style="display: none;">
 					  <label>Cantidad <span class="priority">*<span/></label>
-					  <input type="number" required id="cantidad" name="cantidad" placeholder="Cantidad" class="form-control"/>
+					  <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" class="form-control"/>
 					</div>
 					<div class="col-md-3 mb-3">
 					  <label>Precio de Compra <span class="priority">*<span/></label>
