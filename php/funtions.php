@@ -32,6 +32,12 @@ function dia_nombre_corto($fecha){
   return $dia_nombre;	  
 }	
 
+function rellenarDigitos($valor, $long){
+	$numero = str_pad($valor, $long, '0', STR_PAD_LEFT);
+	
+	return $numero;
+}
+
 function encryption($string){
 	$ouput = FALSE;
 	$key=hash('sha256', SECRET_KEY);
@@ -208,17 +214,17 @@ function Bisiesto($anyo){
    }
 }  
 
-function rellenarDigitos($valor, $long){
-	$numero = str_pad($valor, $long, '0', STR_PAD_LEFT);
-	
-	return $numero;
-}
+function nombremes($mes)
+{
+	// Lista de nombres de meses en español
+	$meses = [
+		1 => 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+		'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+	];
 
-function nombremes($mes){
-  setlocale(LC_TIME, 'spanish');  
-  $nombre=strftime("%B",mktime(0, 0, 0, $mes, 1, 2000)); 
-  return $nombre;
-}  
+	// Retorna el nombre del mes si el número es válido
+	return $meses[$mes] ?? 'Mes inválido';
+}
 
 function nombre_mes_corto($mes){
    $dia_nombre = '';

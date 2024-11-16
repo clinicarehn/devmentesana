@@ -202,7 +202,8 @@ $dias = 0;
 			$exp = "TEMP"; 
 		  }else{
 			 $exp = $expediente;
-		  }					  
+		  }
+		  					  
 		  echo '{"id":"'.$numero.'","title":"'.$exp."-".$nombre.'","start":"'.$fecha_cita.'","end":"'.$fecha_cita_end.'","color":"'.$color.'"}';
 	   }else{
 		  echo 1;//NO SE PUEDO ALMACENAR EL REGISTRO
