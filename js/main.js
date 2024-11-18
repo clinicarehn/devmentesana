@@ -363,7 +363,7 @@ $('#invoice-form #notes').keyup(function () {
 
 function llenarTabla(dato) {
 	if (dato == "formPacientes") {
-		pagination(1);
+		listar_pacientes();
 	}
 
 	if (dato == "formCita") {
