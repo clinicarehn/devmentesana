@@ -33,7 +33,18 @@ if($query_pacientes){
 	$result = $mysqli->query($consulta_expediente);   	
 	
 	if($result->num_rows>0){
-		$consulta_expediente1 = $result->fetch_assoc();
+		$pacientes_id_historial = correlativo('expediente ', 'pacientes');
+		$UpdatePacientes = "
+		UPDATE pacientes
+		SET 
+			expediente = $pacientes_id_historial
+		WHERE 
+			pacientes_id = $pacientes_id
+		";
+
+		$mysqli->query($UpdatePacientes);
+
+/* 		$consulta_expediente1 = $result->fetch_assoc();
 		$expediente = $consulta_expediente1['expediente'];
 		$nombre = $consulta_expediente1['nombre'];
 		$apellido = $consulta_expediente1['apellido'];
@@ -53,7 +64,7 @@ if($query_pacientes){
 
 		$pacientes_id_historial = correlativo('pacientes_id ', 'pacientes');
 		$insert = "INSERT INTO pacientes VALUES ('$pacientes_id','$expediente','$identidad','$nombre','$apellido','$sexo','$telefono1','$telefono2','$fecha_nacimiento','$correo','$fecha','$departamento_id','$municipio_id','$localidad','$religion_id','$profesion_id','$usuario','$estado','$observacion','$fecha_registro')";	
-		$mysqli->query($insert);
+		$mysqli->query($insert); */
 		//HISTORIAL DE PACIENTES		
 	}
 }

@@ -412,6 +412,7 @@ function asignarExpedienteaRegistro(pacientes_id) {
             swal.close();
             showExpediente(pacientes_id);
             listar_pacientes();
+            listar_pacientes();
             return false;
         }
     });
@@ -1255,7 +1256,7 @@ var listar_pacientes = function(){
 			{"data": "edad"},			
 			{"data": "telefono1"},
 			{"data": "identidad"},
-			{"data": "edad"},			
+			{"data": "localidad"},			
 			{
 				"data": null,
 				"defaultContent": 
@@ -1386,7 +1387,7 @@ var add_expediente_paciente_dataTable = function(tbody, table){
 		e.preventDefault();
 		var data = table.row( $(this).parents("tr") ).data();
 		
-		modal_agregar_expediente(data.pacientes_id, data.expediente);
+		modal_agregar_expediente(data.pacientes_id, data.expediente_);
 	});
 }
 
