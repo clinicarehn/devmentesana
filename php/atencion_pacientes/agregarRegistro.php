@@ -20,8 +20,9 @@ $fecha_cita_end = date('Y-m-d H:i:s', strtotime($fecha));
 $fecha_registro = date('Y-m-d H:i:s');
 $status = 1;  // ESTADO PARA LA AGENDA DEL PACIENTE
 $estado = 1;  // ESTADO DE LA ATENCION DEL PACIENTE PARA LA FACTURACION 1. PENDIENTE 2. PAGADA
+$numero_hijos = $_POST['num_hijos'];
 
-$fecha_nacimiento = $_POST['fecha_nac'];
+$fecha_nacimiento = isset($_POST['fecha_nac']) ? $_POST['fecha_nac'] : null;
 
 if (isset($_POST['religion_id'])) {  // COMPRUEBO SI LA VARIABLE ESTA DIFINIDA
 	if ($_POST['religion_id'] == '') {
@@ -56,19 +57,31 @@ if ($result_servicio->num_rows >= 0) {
 	$servicio_id = $consultar_servicio['servicio_id'];
 }
 
+$anos = 0;
+$meses = 0;
+$dias = 0;
+
 /* ############################################################################################################################################################################################## */
 // ACTUALIZAMOS LOS DATOS DEL PACIENTE
-$update = "UPDATE pacientes SET fecha_nacimiento = '$fecha_nacimiento', religion_id = '$religion_id', profesion_id = '$profesion_id'
-	WHERE pacientes_id = '$pacientes_id'";
-$mysqli->query($update) or die($mysqli->error);
-/* ############################################################################################################################################################################################## */
+// Verificar que la fecha no esté vacía antes de ejecutar la consulta SQL
+if ($fecha_nacimiento) {
+	$update = "UPDATE pacientes SET fecha_nacimiento = '$fecha_nacimiento', religion_id = '$religion_id', profesion_id = '$profesion_id'
+               WHERE pacientes_id = '$pacientes_id'";
+	$mysqli->query($update) or die($mysqli->error);
 
-// CONSULTA AÑO, MES y DIA DEL PACIENTE
-$valores_array = getEdad($fecha_nacimiento);
-$anos = $valores_array['anos'];
-$meses = $valores_array['meses'];
-$dias = $valores_array['dias'];
-/*********************************************************************************/
+	// CONSULTA AÑO, MES y DIA DEL PACIENTE
+	$valores_array = getEdad($fecha_nacimiento);
+	$anos = $valores_array['anos'];
+	$meses = $valores_array['meses'];
+	$dias = $valores_array['dias'];
+	/*********************************************************************************/
+} else {
+	$update = "UPDATE pacientes SET religion_id = '$religion_id', profesion_id = '$profesion_id'
+               WHERE pacientes_id = '$pacientes_id'";
+	$mysqli->query($update) or die($mysqli->error);
+}
+
+/* ############################################################################################################################################################################################## */
 
 $consultar_tipo_paciente = "SELECT atencion_id 
 FROM atenciones_medicas AS am
@@ -115,7 +128,7 @@ if ($historia_clinica != '' && $exame_fisico != '' && $diagnostico != '' && $seg
 	if ($pacientes_id != 0) {
 		if ($servicio_id != 0) {
 			if ($result_existencia->num_rows < 3) {
-				$insert = "INSERT INTO atenciones_medicas VALUES('$correlativo','$pacientes_id','$anos','$fecha','$antecedentes','$historia_clinica','$exame_fisico','$diagnostico','$seguimiento','$tipo_paciente','$servicio_id','$colaborador_id','$estado','$fecha_registro')";
+				$insert = "INSERT INTO atenciones_medicas VALUES('$correlativo','$pacientes_id','$anos','$fecha','$antecedentes','$historia_clinica','$exame_fisico','$diagnostico','$seguimiento','$tipo_paciente','$servicio_id','$colaborador_id','$numero_hijos','$estado','$fecha_registro')";
 				$query = $mysqli->query($insert) or die($mysqli->error);
 
 				if ($query) {

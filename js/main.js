@@ -472,7 +472,6 @@ function llenarTabla(dato) {
 	if (dato == "AtencionMedica") {
 		pagination(1);
 		listar_pacientes_buscar();
-		listar_servicios_buscar();
 		listar_servicios_factura_buscar();
 		listar_productos_facturas_buscar();
 		$('.footer').show();
