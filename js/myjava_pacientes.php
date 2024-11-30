@@ -2,7 +2,7 @@
 $(document).ready(function() {
     getSexo();
     getStatus();
-    getResponsables();
+    getResponsable();
     getDepartamentos();
     getPais();
 
@@ -35,7 +35,7 @@ function addPacientes() {
 		$('#formulario_pacientes #reg').show();
 		$('#formulario_pacientes #edi').hide();
 		cleanPacientes();
-		getResponsables();
+		getResponsable();
 		$('#formulario_pacientes #grupo_expediente').hide();
 		$('#formulario_pacientes')[0].reset();
 		$('#formulario_pacientes #pro').val('Registro');
@@ -97,85 +97,7 @@ function addProfesion(){
 		});
 	}
 }
-	
-function getDepartamentos() {
-    var url = '<?php echo SERVERURL; ?>php/pacientes/getDepartamentos.php';
 
-    $.ajax({
-        type: "POST",
-        url: url,
-        async: true,
-        success: function(data) {
-            $('#formulario_pacientes #departamento_id').html("");
-            $('#formulario_pacientes #departamento_id').html(data);
-        }
-    });
-}
-
-function getMunicipio() {
-    var url = '../php/pacientes/getMunicipio.php';
-
-    var departamento_id = $('#formulario_pacientes #departamento_id').val();
-
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: 'departamento_id=' + departamento_id,
-        success: function(data) {
-            $('#formulario_pacientes #municipio_id').html("");
-            $('#formulario_pacientes #municipio_id').html(data);
-        }
-    });
-}
-
-$(document).ready(function() {
-    $('#formulario_pacientes #departamento_id').on('change', function() {
-        var url = '../php/pacientes/getMunicipio.php';
-
-        var departamento_id = $('#formulario_pacientes #departamento_id').val();
-
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: 'departamento_id=' + departamento_id,
-            success: function(data) {
-                $('#formulario_pacientes #municipio_id').html("");
-                $('#formulario_pacientes #municipio_id').html(data);
-            }
-        });
-        return false;
-    });
-});
-
-function getMunicipioEditar(departamento_id, municipio_id) {
-    var url = '../php/pacientes/getMunicipio.php';
-
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: 'departamento_id=' + departamento_id,
-        success: function(data) {
-            $('#formulario_pacientes #municipio_id').html("");
-            $('#formulario_pacientes #municipio_id').html(data);
-            $('#formulario_pacientes #municipio_id').val(municipio_id);
-        }
-    });
-    return false;
-}
-
-function getPais() {
-    var url = '<?php echo SERVERURL; ?>php/pacientes/getPais.php';
-    $.ajax({
-        type: "POST",
-        url: url,
-        async: true,
-        success: function(data) {
-
-            $('#formulario_pacientes #pais_id').html("");
-            $('#formulario_pacientes #pais_id').html(data);
-        }
-    });
-}
 
 $('#formulario_pacientes #buscar_pais_pacientes').on('click', function(e) {
     listar_pais_buscar();
@@ -430,20 +352,6 @@ function getStatus() {
             $('#form_main #estado').html("");
             $('#form_main #estado').html(data);
 			$('#form_main #estado').selectpicker('refresh');
-        }
-    });
-}
-
-function getResponsables() {
-    var url = '<?php echo SERVERURL; ?>php/pacientes/getResponsables.php';
-
-    $.ajax({
-        type: "POST",
-        url: url,
-        async: true,
-        success: function(data) {
-            $('#formulario_pacientes #responsable_id').html("");
-            $('#formulario_pacientes #responsable_id').html(data);
         }
     });
 }
